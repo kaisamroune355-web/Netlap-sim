@@ -89,7 +89,27 @@ pre{direction:ltr;text-align:left;background:var(--inp);border:1px solid var(--l
 <section id="s2">
 <div class="card df"><h2><span class="bd" data-i="def"></span>Unicast / Broadcast / ARP</h2><p class="ds" data-i="nd"></p></div>
 <div class="card"><h2><span class="bd b2" data-i="app"></span>Broadcast</h2><label for="srcsel" data-i="snd"></label><select id="srcsel"></select><div class="net" id="net"></div>
-<div class="row"><button class="g" id="uni">Unicast</button><button id="bro">Broadcast</button></<div class="svgw"><svg id="svg" viewBox="0 0 400 140" style="min-width:400px;width:100%;display:block"></svg></div>
+<div class="row"><button class="g" id="uni">Unicast</button><button id="bro">Broadcast</button></div><p id="bnote" style="font-size:13.5px;margin:0;color:var(--mut)"></p></div>
+<div class="card"><h2><span class="bd b2" data-i="app"></span><span data-i="same"></span></h2>
+<div class="row"><div><label for="a1">A</label><input id="a1" value="192.168.10.20/26" dir="ltr"></div><div><label for="a2">B</label><input id="a2" value="192.168.10.70/26" dir="ltr"></div></div>
+<button id="chk" style="width:100%" data-i="chk"></button><p id="cres" style="font-size:13.5px;margin:10px 0 0"></p></div></section>
+
+<section id="s3">
+<div class="card df"><h2><span class="bd" data-i="def"></span>VLAN</h2><p class="ds" data-i="ld"></p></div>
+<div class="card"><h2><span class="bd b2" data-i="app"></span><span data-i="asg"></span></h2><div id="vl"></div>
+<div class="row"><div><label for="vs" data-i="from"></label><select id="vs"></select></div><div><label for="vd" data-i="to"></label><select id="vd"></select></div></div>
+<label style="display:flex;gap:8px;align-items:center;color:var(--ink);margin-bottom:10px"><input type="checkbox" id="r1" style="width:18px;height:18px;padding:0"><span data-i="ros"></span></label>
+<button id="vt" style="width:100%" data-i="test"></button><p id="vres" style="font-size:13.5px;margin:10px 0 0"></p></div>
+<div class="card"><h2><span class="bd" data-i="res"></span><span data-i="cfg"></span></h2><pre id="vcfg"></pre></div>
+<div class="card"><h2><span class="bd b2" data-i="app"></span>ACL</h2>
+<div class="row"><div><label for="ac" data-i="act"></label><select id="ac"><option>deny</option><option>permit</option></select></div><div><label for="ap" data-i="prt"></label><select id="ap"><option>tcp</option><option>udp</option><option>icmp</option><option>ip</option></select></div></div>
+<div class="row"><div><label for="as" data-i="src"></label><input id="as" value="192.168.10.0 0.0.0.63" dir="ltr"></div><div><label for="ad" data-i="dst"></label><input id="ad" value="192.168.10.128 0.0.0.7" dir="ltr"></div></div>
+<button id="ag" style="width:100%" data-i="gen"></button><pre id="aout"></pre></div></section>
+
+<section id="s4">
+<div class="card df"><h2><span class="bd" data-i="def"></span><span data-i="jt"></span></h2><p class="ds" data-i="jd"></p></div>
+<div class="card"><h2><span class="bd b2" data-i="app"></span><span data-i="jt"></span></h2>
+<label for="pr" data-i="scn"></label><select id="pr"><option value="ping">Ping (ARP + ICMP)</option><option value="arp">ARP</option><option value="dhcp">DHCP (DORA)</option></select><div class="row"><button class="g" id="uni">Unicast</button><button id="bro">Broadcast</button></<div class="svgw"><svg id="svg" viewBox="0 0 400 140" style="min-width:400px;width:100%;display:block"></svg></div>
 <div class="note" id="jnote"></div>
 <h2 style="font-size:16px;margin-top:12px" data-i="pdu"></h2><div id="frame"></div>
 <div class="row" style="margin-top:12px"><button class="g" id="jp" data-i="prev"></button><button id="jx" data-i="cf"></button></div>
@@ -131,6 +151,54 @@ a('asg','تعيين المنافذ','Affectation des ports');a('ros','تفعيل
 a('v1','ينجح: نفس الـ VLAN.','Succès : même VLAN.');a('v2','ينجح عبر الراوتر والـ trunk.','Succès via le routeur et le trunk.');a('v3','يفشل: VLANs معزولة وتحتاج توجيها.','Échec : VLAN isolés, routage nécessaire.');a('v4','اختر جهازين مختلفين','Choisissez deux appareils différents');
 a('cfg','إعداد السويتش','Configuration du switch');a('act','الإجراء','Action');a('prt','البروتوكول','Protocole');a('src','المصدر','Source');a('dst','الوجهة','Destination');a('gen','توليد الأمر','Générer la commande');
 a('jt','رحلة الرسالة','Trajet du message')if(!ip){$('pst').innerHTML='<span class="err">'+t('exh')+'</span>';return}
+  a('jd','تتبّع رسالة عبر الأجهزة والطبقات: السويتش يقرأ MAC فقط ويمرر الإطار كما هو، أما الراوتر فينزع الإطار ويقرأ IP ثم يبني إطارا جديدا بعناوين MAC جديدة. عنوان IP يبقى ثابتا طوال الرحلة.','Suivez un message à travers les équipements et les couches : le switch lit seulement la MAC et transmet la trame telle quelle ; le routeur retire la trame, lit l’IP puis construit une nouvelle trame avec de nouvelles MAC. L’IP reste identique tout le trajet.');
+a('play','تشغيل','Lecture');
+a('nsrc','المصدر: يبني الرسالة ويغلّفها من الأعلى إلى الأسفل.','Source : construit le message et l’encapsule de haut en bas.');
+a('nsw','السويتش: يقرأ MAC الوجهة فقط ويمرر الإطار دون تغيير.','Switch : lit uniquement la MAC de destination et transmet sans modifier.');
+a('nrt','الراوتر: ينزع الإطار، يقرأ IP، ثم يبني إطارا جديدا بعناوين MAC جديدة.','Routeur : retire la trame, lit l’IP puis reconstruit une trame avec de nouvelles MAC.');
+a('nend','الوجهة: تفك التغليف من الأسفل إلى الأعلى وتسلّم البيانات للتطبيق.','Destination : décapsule de bas en haut et remet les données à l’application.');
+a('labs','مخابر Packet Tracer','Labos Packet Tracer');a('dn','أنجزت','Terminé');a('of','من','sur');a('stp','خطوة','étapes');
+function ap(){document.querySelectorAll('[data-i]').forEach(function(e){e.textContent=t(e.dataset.i)});document.documentElement.lang=lang;document.documentElement.dir=lang=='ar'?'rtl':'ltr';
+document.querySelectorAll('.lg button').forEach(function(b){b.classList.toggle('on',b.dataset.l==lang)});document.querySelectorAll('nav button').forEach(function(b,i){b.textContent=t('t'+i)})}
+
+['t0','t1','t2','t3','t4'].forEach(function(k,i){var b=document.createElement('button');if(!i)b.className='on';
+b.onclick=function(){document.querySelectorAll('nav button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');document.querySelectorAll('section').forEach(function(s,j){s.classList.toggle('on',i==j)});window.scrollTo(0,0)};$('tabs').appendChild(b)});
+
+function toInt(s){var p=s.trim().split('.').map(Number);if(p.length!=4||p.some(function(n){return isNaN(n)||n<0||n>255}))return null;return(p[0]*16777216+(p[1]<<16)+(p[2]<<8)+p[3])>>>0}
+function toStr(n){return[n>>>24,(n>>>16)&255,(n>>>8)&255,n&255].join('.')}
+function mk(p){return p==0?0:((0xFFFFFFFF<<(32-p))>>>0)}
+function cidr(s){var m=s.trim().split('/'),ip=toInt(m[0]),p=parseInt(m[1],10);if(ip===null||isNaN(p)||p<0||p>32)return null;return{ip:ip,p:p,net:(ip&mk(p))>>>0}}/* VLSM */
+var subs=[['Compta',120],['Info',50],['Achat',16],['WAN1',2],['WAN2',2]],last='';
+function rows(){$('rows').innerHTML='';subs.forEach(function(s,i){var d=document.createElement('div');d.className='row';
+d.innerHTML='<div style="flex:2"><input value="'+s[0]+'"></div><div><input type="number" min="1" value="'+s[1]+'" dir="ltr"></div><button class="x sm">✕</button>';
+var n=d.querySelectorAll('input');n[0].oninput=function(){s[0]=n[0].value};n[1].oninput=function(){s[1]=+n[1].value};d.querySelector('button').onclick=function(){subs.splice(i,1);rows()};$('rows').appendChild(d)})}
+$('add').onclick=function(){subs.push(['LAN'+(subs.length+1),10]);rows()};
+function calc(){var o=$('out'),b=cidr($('base').value);if(!b||b.p<1||b.p>30){o.innerHTML='<p class="err">'+t('badin')+'</p>';return}
+var total=Math.pow(2,32-b.p),end=b.net+total,cur=b.net,used=0,seg='',html='',txt='';
+subs.slice().sort(function(x,y){return y[1]-x[1]}).forEach(function(s,i){var bits=Math.ceil(Math.log2(Math.max(1,s[1])+2)),size=Math.pow(2,bits),pre=32-bits;cur=Math.ceil(cur/size)*size;
+if(cur+size>end){html+='<div class="sn"><b>'+s[0]+'</b> <span class="err">'+t('noroom')+'</span></div>';return}
+var col='hsl('+(i*57%360)+',65%,58%)';used+=size;seg+='<i title="'+s[0]+'" style="width:'+(size/total*100)+'%;background:'+col+'"></i>';
+html+='<div class="sn" style="border-inline-start-color:'+col+'"><b>'+s[0]+'</b> <small>('+s[1]+' '+t('hst')+', '+t('cap')+' '+(size-2)+')</small><div class="kv"><span>Network</span><span>'+toStr(cur)+'/'+pre+'</span><span>Mask</span><span>'+toStr(mk(pre))+'</span><span>Range</span><span>'+toStr(cur+1)+' - '+toStr(cur+size-2)+'</span><span>Broadcast</span><span>'+toStr(cur+size-1)+'</span></div></div>';
+txt+=s[0]+' '+toStr(cur)+'/'+pre+' '+toStr(cur+1)+'-'+toStr(cur+size-2)+' '+toStr(cur+size-1)+'\n';cur+=size});
+last=txt;o.innerHTML='<div class="stat"><div><b>'+Math.round(used/total*100)+'%</b><span>'+t('used')+'</span></div><div><b>'+(total-used)+'</b><span>'+t('free')+'</span></div></div><div class="seg">'+seg+'</div>'+html+'<button class="g" id="cp" style="width:100%">'+t('copy')+'</button>';
+$('cp').onclick=function(){try{navigator.clipboard.writeText(last);$('cp').textContent=t('copied')}catch(e){}}}
+$('calc').onclick=calc;
+function cbf(){var c=cidr($('ci').value),o=$('co');if(!c){o.innerHTML='<p class="err">'+t('bad')+'</p>';return}
+var m=mk(c.p),f=c.ip>>>24,k=f<128?'A':f<192?'B':f<224?'C':f<240?'D':'E',h=c.p>=31?0:Math.pow(2,32-c.p)-2,pv=f==10||(c.ip>>>20)==0xAC1||(c.ip>>>16)==0xC0A8;
+o.innerHTML='<div class="kv" style="grid-template-columns:96px 1fr"><span>Network</span><span>'+toStr(c.net)+'</span><span>Mask</span><span>'+toStr(m)+'</span><span>Wildcard</span><span>'+toStr(~m>>>0)+'</span><span>Broadcast</span><span>'+toStr((c.net|~m)>>>0)+'</span><span>'+t('hosts')+'</span><span>'+h+'</span><span>'+t('cls')+'</span><span>'+k+'</span><span>'+t('typ')+'</span><span>'+(pv?t('prv'):t('pub'))+'</span></div>'}
+$('cb').onclick=cbf;
+
+/* DHCP */
+var D=[['D','Discover',0],['O','Offer',1],['R','Request',0],['A','Acknowledge',1]],di=0;
+function dd(){$('stp').innerHTML=D.map(function(s,i){return'<div class="'+(i==di?'on':i<di?'dn':'')+'">'+s[0]+'</div>'}).join('');var p=$('pkt');p.textContent=D[di][1];
+p.style.left=D[di][2]?'calc(100% - 92px - '+(p.offsetWidth||70)+'px)':'92px';$('dnote').textContent=D[di][1]+': '+t(D[di][0])}
+$('next').onclick=function(){di=(di+1)%4;dd()};$('prev').onclick=function(){di=(di+3)%4;dd()};
+var cls=[];
+function pool(){var a1=+$('p1').value,b1=+$('p2').value;$('pst').textContent=t('resv')+': '+cls.length+' / '+Math.max(0,b1-a1+1);$('cls').innerHTML='';
+cls.forEach(function(c,i){var d=document.createElement('div');d.className='cl';d.innerHTML='<span>'+c.mac+' → '+c.ip+'</span><button class="x">Release</button>';d.querySelector('button').onclick=function(){cls.splice(i,1);pool()};$('cls').appendChild(d)})}
+$('lease1').onclick=function(){var a1=+$('p1').value,b1=+$('p2').value,pre=$('pf').value,u=cls.map(function(c){return c.ip}),ip=null;
+for(var i=a1;i<=b1;i++){if(u.indexOf(pre+i)<0){ip=pre+i;break}}
+var a=function(){};
 cls.push({ip:ip,mac:'AA:BB:'+Math.floor(Math.random()*65536).toString(16).toUpperCase().padStart(4,'0')});pool()};
 ['p1','p2','pf'].forEach(function(i){$(i).oninput=pool});
 function ld(){var v=+$('lr').value,h=Math.max(1,+$('lease').value||1);$('lb').style.width=v+'%';$('lt').textContent=t('aft')+' '+(v*h/100).toFixed(1)+' '+t('h')+' ('+v+'%): '+t(v<50?'l1':v<87.5?'l2':v<100?'l3':'l4')}
