@@ -6,273 +6,337 @@
 <title>NetLab Pro</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0A0F1E;--card:#111A2E;--ink:#EAF0FF;--mut:#93A3C4;--pri:#235AAE;--pri2:#18243F;--ac:#3B82F6;--hot:#F59E0B;--ok:#34D399;--line:#243352;--bad:#F87171;--inp:#0A1020;padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}html,body{margin:0}
-body{background:var(--bg) linear-gradient(180deg,#14264A 0,var(--bg) 380px) no-repeat;color:var(--ink);font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;font-size:15px;line-height:1.6;padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#0A0F1E;--card:#111A2E;--ink:#EAF0FF;--mut:#93A3C4;--pri:#235AAE;--pri2:#18243F;--ac:#3BB2F6;--hot:#F59E0B;--box-sizing:border-box}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:linear-gradient(180deg,#14264A 0,var(--bg) 380px) no-repeat;color:var(--ink);font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px}
 #app{max-width:560px;margin:0 auto;padding:0 14px 40px}
-header{text-align:center;padding:26px 8px 16px;border-bottom:1px solid var(--line);margin:0 -14px 16px}
-h1{margin:0;font-size:30px;line-height:1.3}header p{margin:4px 0 12px;color:var(--mut)}
-.lg{display:inline-flex;gap:6px}.lg button{padding:6px 16px;border-radius:20px;background:var(--pri2);border-color:var(--line);font-size:14px}.lg button.on{background:var(--pri);border-color:var(--ac)}
-nav div{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:16px}
-nav button{width:calc(33.33% - 7px);background:var(--pri2);border:1px solid var(--line);padding:14px 4px;font-weight:500}nav button.on{background:var(--pri);border-color:var(--ac)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:18px;margin-bottom:14px}
-.df{border-inline-start:5px solid var(--ok)}
-h2{font-size:19px;margin:0 0 8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.bd{font-size:12.5px;font-weight:600;padding:2px 12px;border-radius:20px;background:#12382F;color:var(--ok);border:1px solid #1F6B52}.b2{background:#16294F;color:#7FB0FF;border-color:#2B4C8C}
-.ds{color:var(--mut);margin:0 0 14px;font-size:14.5px}.df .ds{margin:0;color:var(--ink)}
-label{display:block;font-size:13.5px;color:var(--mut);margin-bottom:5px}
-input,select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:var(--inp);color:var(--ink);font:inherit;font-size:16px}
+header{text-align:center;padding:26px 0 16px;border-bottom:1px solid var(--line);margin:0 -14px 16px}
+h1{margin:0;font-size:30px;line-height:1.3}
+header p{margin:4px 0 12px;color:var(--mut)}
+.lg{display:inline-flex;gap:6px}
+.lg button{padding:6px 16px;border-radius:20px;background:var(--pri2);border:1px solid var(--line);color:var(--mut);font-size:12px;cursor:pointer}
+.lg button.on{background:var(--ac);color:#04121F;border-color:transparent}
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:16px}
+nav button{width:calc(33.33% - 7px);background:var(--pri2);border:1px solid var(--line);padding:14px 4px;font-weight:600;font-size:13px;color:var(--mut);border-radius:14px;cursor:pointer}
+nav button.on{background:var(--ac);color:#04121F;border-color:transparent}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:16px;margin-bottom:14px}
+.df{display:inline-start;padding:4px 8px;font-size:12px;border-radius:8px;background:var(--pri2);color:var(--ac);margin-bottom:10px}
+h2{font-size:18px;margin:0 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bd{font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:20px;background:#12382F;color:var(--ok)}
+.bd.hot{background:#3A2A10;color:var(--hot)}
+.bd.info{background:#12243F;color:var(--ac)}
+.ds{color:var(--mut);margin:0 0 14px;font-size:14.5px}
+.df .ds{margin:0;color:var(--ink)}
+label{display:block;font-size:13px;color:var(--mut);margin-bottom:5px}
+input,select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:var(--inp);color:var(--ink);font-size:14px;font-family:inherit;box-sizing:border-box}
 input[dir=ltr]{text-align:left}
-.row{display:flex;gap:10px;align-items:flex-end;margin-bottom:12px}.row>*{min-width:0;flex:1}.row>.sm{flex:0 0 auto}
-button{font:inherit;font-weight:600;border:1px solid var(--ac);border-radius:14px;padding:12px 16px;cursor:pointer;background:var(--pri);color:#fff}
-button.g{background:var(--pri2);border-color:var(--line);color:var(--ink)}button.x{background:none;border-color:transparent;color:var(--bad);padding:8px}
+.row{display:flex;gap:10px;align-items:flex-end;margin-bottom:12px}
+.row>*{min-width:0;flex:1}
+.row .sm{flex:0 0 auto}
+button{font:inherit;font-weight:600;border:1px solid var(--ac);border-radius:14px;padding:12px 16px;cursor:pointer;background:var(--inp);color:var(--ink)}
+button.pri{background:var(--pri2);border-color:var(--line);color:var(--ac)}
+button.x{background:var(--pri2);border:0;color:var(--mut);padding:8px 10px;font-size:12px}
 button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--hot);outline-offset:2px}
-section{display:none}section.on{display:block}
-.stat{display:flex;gap:10px;margin-bottom:12px}.stat div{flex:1;background:var(--inp);border:1px solid var(--line);border-radius:14px;padding:10px 12px}.stat b{display:block;font-size:21px}.stat span{font-size:12.5px;color:var(--mut)}
-.seg{display:flex;height:22px;border-radius:11px;overflow:hidden;background:var(--line);margin:4px 0 14px;direction:ltr}.seg i{display:block;height:100%;border-inline-end:2px solid var(--card)}
-.sn{background:var(--inp);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:8px;border-inline-start:5px solid var(--ac)}.sn small{color:var(--mut)}
-.kv{display:grid;grid-template-columns:84px 1fr;gap:1px 10px;font-size:13.5px;direction:ltr;text-align:left;margin-top:6px}.kv span:nth-child(odd){color:var(--mut)}
-.err{color:var(--bad);font-weight:600}.okc{color:var(--ok);font-weight:600}
-.lane{position:relative;height:80px;direction:ltr;margin:6px 0 12px}
-.lane .n{position:absolute;top:8px;width:84px;text-align:center;border:1px solid var(--line);border-radius:14px;padding:8px 0;background:var(--inp);font-weight:600;font-size:13px}
-.lane .c{left:0}.lane .s{right:0}.lane hr{position:absolute;top:38px;left:90px;right:90px;border:0;border-top:2px dashed var(--line);margin:0}
-.pkt{position:absolute;top:24px;left:92px;padding:3px 10px;border-radius:12px;background:var(--hot);color:#111;font-size:12px;font-weight:700;transition:left .6s}
-.stp{display:flex;gap:8px;margin-bottom:12px}.stp div{flex:1;text-align:center;padding:8px 0;border-radius:12px;background:var(--inp);border:1px solid var(--line);font-weight:700;color:var(--mut)}
-.stp div.on{background:var(--pri);border-color:var(--ac);color:#fff}.stp div.dn{background:#12382F;border-color:#1F6B52;color:var(--ok)}
-.bar{height:10px;border-radius:6px;background:var(--line);overflow:hidden}.bar i{display:block;height:100%;background:var(--ac);width:0;transition:width .3s}
+section{display:none}
+section.on{display:block}
+.stat{display:flex;gap:10px;margin-bottom:12px}
+.stat div{flex:1;background:var(--inp);border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:13px}
+.stat b{display:block;color:var(--ac);font-size:15px;margin-top:4px}
+.seg{display:flex;height:22px;border-radius:11px;overflow:hidden;background:var(--line);margin:4px 0 14px;direction:ltr}
+.sn{background:var(--inp);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;font-family:monospace;direction:ltr;font-size:13.5px}
+.kv{display:grid;grid-template-columns:84px 1fr;gap:10px;font-size:13.5px;direction:ltr;text-align:left;margin-top:8px}
+.err{color:var(--bad);font-weight:600}
+.ok{color:var(--ok);font-weight:600}
+.lane{position:relative;height:60px;direction:ltr;margin:0 8px 12px}
+.lane::before{content:'';position:absolute;top:8px;width:100%;height:4px;background:var(--line);border-radius:4px}
+.lane .c{left:0}.lane .r{right:0}
+.lane hr{position:absolute;top:38px;left:0;width:100%;height:4px;background:var(--line);border:0}
+.cl{position:absolute;top:24px;left:2px;width:34px;height:34px;border-radius:50%;background:var(--ac);color:#04121F;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:11px}
+.stp{display:flex;gap:8px;margin-bottom:12px}
+.stp div{flex:1;text-align:center;padding:8px;border-radius:14px;background:var(--inp);border:1px solid var(--line);font-size:12px}
+.stp div b{display:block}
+.stp div.on{background:var(--pri);border-color:var(--ac);color:#fff}
+.stp div.on b{color:#fff}
+.bar{height:10px;border-radius:5px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ac);transition:width .3s}
 .net{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0;text-align:center}
-.node{border:2px solid var(--line);border-radius:14px;padding:8px 2px;font-weight:600;font-size:13px;background:var(--inp);transition:.3s}.node small{display:block;font-weight:400;color:var(--mut);font-size:10.5px;direction:ltr}
-.node.src{border-color:var(--hot)}.node.rx{border-color:var(--ok);background:#12382F}.node.blk{border-color:var(--bad);opacity:.75}.rt{grid-column:1/-1}
-.cl{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--inp);border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin-bottom:8px;font-size:13.5px;direction:ltr}
-.jn{position:relative;display:grid;grid-template-columns:repeat(5,1fr);direction:ltr;text-align:center;margin:34px 0 8px;gap:4px}
-.nd{border:2px solid var(--line);border-radius:12px;background:var(--inp);padding:6px 0;font-size:20px;line-height:1.2;opacity:.9}.nd small{display:block;font-size:10.5px;color:var(--mut)}
-.nd.on{border-color:var(--hot);background:#3A2A10}.nd.off{opacity:.3}
-.pk{position:absolute;top:-30px;font-size:24px;transform:translateX(-50%);transition:left .7s}
-.f{border:2px solid;border-radius:12px;padding:6px 10px;margin-top:6px;font-size:12.5px;direction:ltr;text-align:left}.f b{margin-inline-end:6px}.f code{color:var(--ink)}
-.f2{border-color:#8B5CF6}.f3{border-color:#3B82F6}.f4{border-color:var(--hot)}.f5{border-color:var(--ok)}
+.node{border:2px solid var(--line);border-radius:14px;padding:8px;font-weight:600;font-size:13px;background:var(--inp);color:var(--ink);transition:border-color .15s,background .15s}
+.node.sel{border-color:var(--ac);background:rgba(59,178,246,.12)}
+.node.r{border-color:var(--hot)}
+.node.r.sel{border-color:var(--hot);background:rgba(245,158,11,.12)}
+.node small{display:block;font-weight:400;font-size:10px;color:var(--mut);margin-top:2px}
+.cl{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--inp);border:1px solid var(--line);border-radius:12px;padding:8px;margin-bottom:8px;font-size:12.5px}
+.jn{position:relative;display:grid;grid-template-columns:repeat(5,1fr);direction:ltr;text-align:center;margin:0 0 8px}
+.jn::before{content:'';position:absolute;top:4px;left:10%;right:10%;height:2px;background:var(--line);z-index:0}
+.jn div{position:relative;z-index:1;background:var(--inp);border:1px solid var(--line);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:11px;margin:0 auto;color:var(--ink)}
+.jn div.on{border-color:var(--ac);background:var(--ac);color:#04121F}
+.jn div.err{border-color:var(--bad);background:#3A1414;color:var(--bad)}
+.pk{position:absolute;top:30px;font-size:24px;transform:translateX(-50%);transition:left .7s}
+#f{border:2px solid var(--line);border-radius:12px;padding:6px 10px;margin-top:6px;font-size:12.5px;direction:ltr;text-align:left}
+.f2{border-color:#B85CF6}
+.f3{border-color:#3BB2F6}
+.f4{border-color:var(--hot)}
+.f5{border-color:var(--ok)}
 .note{background:var(--inp);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13.5px;margin:8px 0}
-details.lab{border-top:1px solid var(--line);padding:4px 0}details.lab:first-of-type{border-top:0}summary{font-weight:600;cursor:pointer;padding:8px 0}
-.step{display:flex;gap:10px;padding:5px 0;font-size:14px}.step input{width:20px;height:20px;flex:none;margin-top:3px;padding:0}
-pre{direction:ltr;text-align:left;background:var(--inp);border:1px solid var(--line);border-radius:12px;font-size:12.5px;padding:8px 12px;overflow-x:auto;margin:4px 0 6px}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
-.svgw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--inp);margin-top:10px}svg text{fill:var(--ink)}
-.evl{max-height:180px;overflow:auto;border:1px solid var(--line);border-radius:12px}
-.ev{display:grid;grid-template-columns:28px 1fr 1fr 60px;gap:4px;padding:6px 10px;font-size:12.5px;border-bottom:1px solid var(--line);cursor:pointer;direction:ltr}.ev.on{background:var(--pri)}.ev.hd{color:var(--mut);cursor:default;position:sticky;top:0;background:var(--card)}
+details{border-top:1px solid var(--line);padding:4px 0}
+details:last-child{border-bottom:0}
+summary{font-weight:600;font-size:13.5px;padding:10px 0;cursor:pointer}
+.step{display:flex;gap:10px;padding:5px 0;font-size:14px}
+.step input{width:20px;height:20px;flex:none;margin-top:3px}
+pre{direction:ltr;text-align:left;background:var(--inp);border:1px solid var(--line);border-radius:12px;font-size:12.5px;padding:12px;overflow:auto;margin:8px 0}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+svg{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--inp);margin-top:10px}
+svg text{fill:#EAF0FF;font-family:monospace}
+.ev{max-height:180px;overflow:auto;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:12px;direction:ltr;text-align:left;background:var(--inp)}
+.ev>div{display:grid;grid-template-columns:28px 1fr 1fr 60px;gap:4px;padding:6px 10px;font-size:12.5px;border-bottom:1px solid var(--line)}
 </style>
 </head>
 <body>
 <div id="app">
-<header><h1>NetLab Pro 📡</h1><p data-i="sub"></p><div class="lg"><button data-l="ar">عربية</button><button data-l="fr">Français</button></div></header>
+<header><h1>NetLab Pro <span class="df" data-i="sub"></span></h1><p data-i="sub"></p><div class="lg"><button data-l="ar">العربية</button><button data-l="fr">Français</button></div></header>
 <nav><div id="tabs"></div></nav>
 
 <section id="s0" class="on">
 <div class="card df"><h2><span class="bd" data-i="def"></span>VLSM</h2><p class="ds" data-i="vd"></p></div>
 <div class="card"><h2><span class="bd b2" data-i="app"></span><span data-i="vt"></span></h2>
-<label for="base" data-i="vb"></label><input id="base" value="192.168.10.0/24" dir="ltr"><div style="height:12px"></div><div id="rows"></div>
-<div class="row"><button class="g" id="add" data-i="add"></button><button id="calc" data-i="calc"></button></div></div>
+<label for="base" data-i="vb"></label><input id="base" value="192.168.10.0/24" dir="ltr"><div style="height:12px"></div>
+<div class="row"><button class="g" id="add" data-i="add"></button><button id="calc" data-i="calc"></button></div>
 <div class="card"><h2><span class="bd" data-i="res"></span><span data-i="vt"></span></h2><div id="out"></div></div>
 <div class="card"><h2><span class="bd b2" data-i="app"></span>CIDR</h2>
-<div class="row"><div><label for="ci">IP/CIDR</label><input id="ci" value="172.16.5.77/20" dir="ltr"></div><button class="sm" id="cb" data-i="an"></button></div><div id="co"></div></div></section>
+<div class="row"><div><label for="ci">IP/CIDR</label><input id="ci" value="172.16.5.77/20" dir="ltr"></div><button class="pri" id="cbf">=</button></div>
+<div id="co"></div></div>
+</section>
 
 <section id="s1">
 <div class="card df"><h2><span class="bd" data-i="def"></span>DHCP</h2><p class="ds" data-i="dd"></p></div>
-<div class="card"><h2><span class="bd b2" data-i="app"></span>DORA</h2><div class="stp" id="stp"></div>
-<div class="lane"><div class="n c"><span data-i="cli"></span><br><small>0.0.0.0</small></div><hr><div class="n s"><span data-i="srv"></span><br><small>:67</small></div><div class="pkt" id="pkt">Discover</div></div>
-<p id="dnote" style="font-size:13.5px;margin:0 0 10px"></p><div class="row"><button class="g" id="prev" data-i="prev"></button><button id="next" data-i="next"></button></div></div>
+<div class="card"><h2><span class="bd b2" data-i="app"></span><span data-i="dpara"></span><span data-i="stp"></span></h2>
+<div class="cl lane"><div class="n"><span data-i="cli"></span><br><small>0.0.0.0</small></div><hr><div class="n s"><span id="ipd">192.168.10.24</span><br><small id="sid">00:11:22:33:44:55</small></div><div class="n r"><span data-i="srv"></span><br><small>0.0.0.0</small></div></div>
 <div class="card"><h2><span class="bd b2" data-i="app"></span><span data-i="pool"></span></h2>
-<div class="row"><div><label for="pf" data-i="pfx"></label><input id="pf" value="192.168.10." dir="ltr"></div><div><label for="p1" data-i="from"></label><input id="p1" type="number" value="10" dir="ltr"></div><div><label for="p2" data-i="to"></label><input id="p2" type="number" value="14" dir="ltr"></div></div>
-<button id="lease1" style="width:100%" data-i="ask"></button><p id="pst" style="font-size:13px;color:var(--mut);margin:10px 0 6px"></p><div id="cls"></div></div>
+<div class="row"><div><label for="pf">Pool name</label><input id="pf" value="LAN"></div><div><label for="pn">Network</label><input id="pn" value="192.168.10.0" dir="ltr"></div><div class="sm"><label for="pm">Mask</label><input id="pm" value="255.255.255.0" dir="ltr"></div></div>
+<button id="lease" class="pri" style="width:100%">Generate Pool</button><pre id="pst" style="font-size:13px;color:var(--mut);margin:10px 0 0"></pre>
+<button id="ask" style="width:100%;margin-top:8px" data-i="ask"></button>
 <div class="card"><h2><span class="bd b2" data-i="app"></span><span data-i="lease"></span></h2>
-<label for="lease" data-i="hrs"></label><input id="lease" type="number" value="8" min="1" dir="ltr"><div style="height:12px"></div><div class="bar"><i id="lb"></i></div>
-<input type="range" id="lr" min="0" max="100" value="0" style="padding:0;margin-top:12px;border:0"><p id="lt" style="margin:4px 0 0;font-size:13.5px"></p></div></section>
+<label for="lrs">Lease duration (seconds)</label><input id="lrs" value="86400" dir="ltr">
+<label for="lease" data-i="lease"></label><input type="range" id="lr" min="0" max="100" value="0" style="padding:0;margin-top:12px;border:0"><pre id="lt" style="margin-top:8px"></pre>
+</section>
 
 <section id="s2">
 <div class="card df"><h2><span class="bd" data-i="def"></span>Unicast / Broadcast / ARP</h2><p class="ds" data-i="nd"></p></div>
-<div class="card"><h2><span class="bd b2" data-i="app"></span>Broadcast</h2><label for="srcsel" data-i="snd"></label><select id="srcsel"></select><div class="net" id="net"></div>
-<div class="row"><button class="g" id="uni">Unicast</button><button id="bro">Broadcast</button></div><p id="bnote" style="font-size:13.5px;margin:0;color:var(--mut)"></p></div>
+<div class="card"><h2><span class="bd b2" data-i="app"></span>Broadcast</h2><label for="srcsel" data-i="srcsel"></label>
+<div class="row"><button class="g" id="uni">Unicast</button><button id="bro" class="pri">Broadcast</button></div><div id="bnote" style="font-size:13px;color:var(--mut);margin-top:6px"></div></div>
 <div class="card"><h2><span class="bd b2" data-i="app"></span><span data-i="same"></span></h2>
-<div class="row"><div><label for="a1">A</label><input id="a1" value="192.168.10.20/26" dir="ltr"></div><div><label for="a2">B</label><input id="a2" value="192.168.10.70/26" dir="ltr"></div></div>
-<button id="chk" style="width:100%" data-i="chk"></button><p id="cres" style="font-size:13.5px;margin:10px 0 0"></p></div></section>
+<div class="row"><div><label for="a1">A</label><input id="a1" value="192.168.10.26" dir="ltr"></div><div><label for="a2">B</label><input id="a2" value="192.168.10.67" dir="ltr"></div></div>
+<button id="chk" style="width:100%" data-i="chk"></button><p id="cres" style="font-size:13.5px;margin:10px 0 0"></p></div>
+</section>
 
 <section id="s3">
-<div class="card df"><h2><span class="bd" data-i="def"></span>VLAN</h2><p class="ds" data-i="ld"></p></div>
-<div class="card"><h2><span class="bd b2" data-i="app"></span><span data-i="asg"></span></h2><div id="vl"></div>
+<div class="card df"><h2><span class="bd" data-i="def"></span>VLAN</h2><p class="ds" data-i="vd"></p></div>
+<div class="card"><h2><span class="bd b2" data-i="app"></span><span data-i="asg"></span></h2><div id="vld"></div>
 <div class="row"><div><label for="vs" data-i="from"></label><select id="vs"></select></div><div><label for="vd" data-i="to"></label><select id="vd"></select></div></div>
-<label style="display:flex;gap:8px;align-items:center;color:var(--ink);margin-bottom:10px"><input type="checkbox" id="r1" style="width:18px;height:18px;padding:0"><span data-i="ros"></span></label>
-<button id="vt" style="width:100%" data-i="test"></button><p id="vres" style="font-size:13.5px;margin:10px 0 0"></p></div>
+<div class="row"><button class="g" id="vt" style="width:100%" data-i="vt"></button></div><pre id="vres" style="font-size:13.5px;margin:10px 0 0"></pre></div>
 <div class="card"><h2><span class="bd" data-i="res"></span><span data-i="cfg"></span></h2><pre id="vcfg"></pre></div>
 <div class="card"><h2><span class="bd b2" data-i="app"></span>ACL</h2>
-<div class="row"><div><label for="ac" data-i="act"></label><select id="ac"><option>deny</option><option>permit</option></select></div><div><label for="ap" data-i="prt"></label><select id="ap"><option>tcp</option><option>udp</option><option>icmp</option><option>ip</option></select></div></div>
-<div class="row"><div><label for="as" data-i="src"></label><input id="as" value="192.168.10.0 0.0.0.63" dir="ltr"></div><div><label for="ad" data-i="dst"></label><input id="ad" value="192.168.10.128 0.0.0.7" dir="ltr"></div></div>
-<button id="ag" style="width:100%" data-i="gen"></button><pre id="aout"></pre></div></section>
+<div class="row"><div><label for="ac" data-i="act"></label><select id="ac"><option>deny</option><option>permit</option></select></div>
+<div><label for="as" data-i="src"></label><input id="as" value="192.168.10.0 0.0.0.63" dir="ltr"></div></div>
+<button id="ag" style="width:100%" data-i="gen"></button><pre id="aout"></pre></div>
+</section>
 
 <section id="s4">
 <div class="card df"><h2><span class="bd" data-i="def"></span><span data-i="jt"></span></h2><p class="ds" data-i="jd"></p></div>
 <div class="card"><h2><span class="bd b2" data-i="app"></span><span data-i="jt"></span></h2>
-<label for="pr" data-i="scn"></label><select id="pr"><option value="ping">Ping (ARP + ICMP)</option><option value="arp">ARP</option><option value="dhcp">DHCP (DORA)</option></select><div class="row"><button class="g" id="uni">Unicast</button><button id="bro">Broadcast</button></<div class="svgw"><svg id="svg" viewBox="0 0 400 140" style="min-width:400px;width:100%;display:block"></svg></div>
+<label for="pr">Protocol</label><select id="pr"><option value="ping">Ping (ARP + ICMP)</option><option value="arp">ARP</option></select>
 <div class="note" id="jnote"></div>
 <h2 style="font-size:16px;margin-top:12px" data-i="pdu"></h2><div id="frame"></div>
-<div class="row" style="margin-top:12px"><button class="g" id="jp" data-i="prev"></button><button id="jx" data-i="cf"></button></div>
-<div class="row"><button class="g" id="pl" data-i="play"></button><button class="g" id="rs" data-i="rst"></button></div>
+<div class="row" style="margin-top:10px"><button class="g" id="jp" data-i="pre"></button><button id="jx" data-i="cf"></button></div>
+<div class="row"><button class="g" id="p1" data-i="play"></button><button class="g" id="rst" data-i="rst"></button></div>
+<div class="stp" id="stp"></div>
+<div class="bar" id="bar"><i id="pi"></i></div>
 <h2 style="font-size:16px;margin-top:6px" data-i="evl"></h2><div class="evl" id="evl"></div></div>
-<div class="card"><h2><span class="bd b2" data-i="app"></span><span data-i="labs"></span></h2><div class="bar"><i id="pb"></i></div><p id="pt" style="margin:8px 0 6px;font-size:13px;color:var(--mut)"></p><div id="labs"></div></div></section>
-</div>
-
-<script>
+<div class="card"><h2><span class="bd b2" data-i="app"></span><span data-i="labs"></span></h2><div class="bar"><i id="prg"></i></div><div class="labs" id="labs"></div></div>
+<div class="note">...</div>
+</section><script>
 var $=function(i){return document.getElementById(i)},lang='ar',S={ar:{},fr:{}};
 try{lang=localStorage.getItem('nl')||'ar'}catch(e){}
-function a(k,x,y){S.ar[k]=x;S.fr[k]=y}function t(k){return S[lang][k]}
-a('sub','محاكي مرئي لإدارة الشبكات','Simulateur visuel d’administration réseau');
-a('def','تعريف','Définition');a('app','تطبيق','Application');a('res','النتيجة','Résultat');
-a('t0','VLSM','VLSM');a('t1','DHCP','DHCP');a('t2','الشبكة','Réseau');a('t3','VLAN','VLAN');a('t4','المخبر','Labo');
-a('vd','VLSM تقنية تعطي كل شبكة فرعية قناعا بطول مختلف حسب حاجتها فلا يضيع العنوان. الخطوات: رتّب الشبكات من الأكبر إلى الأصغر، احسب البتات بالقاعدة 2ⁿ − 2 ≥ عدد الأجهزة، ثم ابدأ كل شبكة من مضاعف حجمها.','Le VLSM donne à chaque sous-réseau un masque de longueur différente selon son besoin, sans gaspiller d’adresses. Étapes : trier du plus grand au plus petit, calculer les bits avec 2ⁿ − 2 ≥ hôtes, puis démarrer chaque réseau à un multiple de sa taille.');
-a('vt','حاسبة VLSM','Calculateur VLSM');a('vb','الشبكة الأم','Réseau parent');a('add','إضافة شبكة','Ajouter un réseau');a('calc','احسب','Calculer');
-a('used','مستعمل','Utilisé');a('free','عنوان حر','Adresses libres');a('noroom','لا توجد مساحة كافية','Espace insuffisant');a('hst','جهاز','hôtes');a('cap','تتسع لـ','capacité');
-a('copy','نسخ الجدول','Copier le tableau');a('copied','تم النسخ','Copié');a('badin','اكتب الشبكة الأم مثل 192.168.10.0/24','Saisissez le réseau parent, ex. 192.168.10.0/24');
-a('an','تحليل','Analyser');a('prv','خاص','Privé');a('pub','عام','Public');a('cls','الفئة','Classe');a('hosts','الأجهزة','Hôtes');a('typ','النوع','Type');a('bad','صيغة غير صحيحة','Format invalide');
-a('dd','DHCP بروتوكول يوزّع عناوين IP تلقائيا عبر UDP (المنفذ 67 للخادم و68 للعميل) في أربع رسائل تسمى DORA. يُمنح العنوان بإيجار محدد المدة ويُجدَّد عند 50% ثم 87.5%.','Le DHCP distribue automatiquement les adresses IP via UDP (port 67 serveur, 68 client) en quatre messages : DORA. L’adresse est prêtée pour une durée limitée, renouvelée à 50 % puis 87,5 %.');
-a('cli','العميل','Client');a('srv','الخادم','Serveur');a('prev','السابق','Précédent');a('next','التالي','Suivant');
-a('D','العميل يبث طلبه لأنه بلا عنوان: 0.0.0.0:68 ← 255.255.255.255:67.','Le client diffuse sa demande, sans adresse : 0.0.0.0:68 → 255.255.255.255:67.');
-a('O','الخادم يقترح عنوانا مع القناع والبوابة ومدة الإيجار.','Le serveur propose une adresse avec masque, passerelle et durée du bail.');
-a('R','العميل يقبل عرضا ويعلن عن الخادم المختار.','Le client accepte une offre et annonce le serveur choisi.');
-a('A','الخادم يؤكد التخصيص ويصبح العنوان قابلا للاستعمال.','Le serveur confirme et l’adresse devient utilisable.');
-a('pool','مجال العناوين','Plage d’adresses');a('pfx','البادئة','Préfixe');a('from','من','De');a('to','إلى','Vers');a('ask','جهاز جديد يطلب عنوانا','Un nouveau client demande une adresse');
-a('resv','المحجوز','Attribuées');a('exh','انتهى المجال، اضغط Release.','Plage épuisée : faites un Release.');
-a('lease','تجديد الإيجار','Renouvellement du bail');a('hrs','مدة الإيجار (ساعات)','Durée du bail (heures)');
-a('l1','العميل يستعمل عنوانه.','Le client utilise son adresse.');a('l2','عند 50%: Request إلى نفس الخادم (Unicast).','À 50 % : Request en unicast vers le même serveur.');
-a('l3','عند 87.5%: Request بشكل Broadcast.','À 87,5 % : Request en broadcast.');a('l4','عند 100%: يبدأ من جديد بـ Discover.','À 100 % : on recommence par Discover.');a('aft','بعد','Après');a('h','ساعة','h');
-a('nd','Unicast رسالة لجهاز واحد، وBroadcast رسالة لكل أجهزة الشبكة ولا يعبر الراوتر. إذا كان المستقبل في نفس الشبكة يستعمل المرسل ARP لمعرفة عنوان MAC، وإلا يرسل الحزمة إلى البوابة.','L’unicast cible un seul appareil, le broadcast tous ceux du réseau, sans traverser le routeur. Si la destination est dans le même réseau, l’émetteur utilise ARP pour connaître sa MAC, sinon il passe par la passerelle.');
-a('snd','الجهاز المرسل','Émetteur');a('bn0','اختر نوع الإرسال.','Choisissez le type d’envoi.');
-a('un','Unicast: الإطار يصل إلى جهاز واحد فقط.','Unicast : la trame n’atteint qu’un seul appareil.');a('bn','Broadcast: يصل إلى كل الأجهزة، والراوتر يحجبه.','Broadcast : tous les appareils le reçoivent, le routeur le bloque.');
-a('rtn','راوتر نحو شبكة أخرى','Routeur vers un autre réseau');a('same','هل الجهازان في نفس الشبكة؟','Même réseau ?');a('chk','تحقق','Vérifier');
-a('sm','نفس الشبكة: ARP ثم اتصال مباشر.','Même réseau : ARP puis communication directe.');a('df','شبكتان مختلفتان: الحزمة تذهب إلى البوابة.','Réseaux différents : le paquet passe par la passerelle.');
-a('ld','VLAN يقسّم السويتش إلى شبكات منطقية معزولة. الأجهزة في نفس الـ VLAN تتصل مباشرة، وبين VLANs مختلفة تحتاج راوتر (Router-on-a-stick) عبر منفذ trunk.','Un VLAN découpe le switch en réseaux logiques isolés. Dans un même VLAN la communication est directe ; entre VLAN différents il faut un routeur (router-on-a-stick) via un port trunk.');
-a('asg','تعيين المنافذ','Affectation des ports');a('ros','تفعيل Router-on-a-stick','Activer le router-on-a-stick');a('test','اختبار الاتصال','Tester la liaison');
-a('v1','ينجح: نفس الـ VLAN.','Succès : même VLAN.');a('v2','ينجح عبر الراوتر والـ trunk.','Succès via le routeur et le trunk.');a('v3','يفشل: VLANs معزولة وتحتاج توجيها.','Échec : VLAN isolés, routage nécessaire.');a('v4','اختر جهازين مختلفين','Choisissez deux appareils différents');
-a('cfg','إعداد السويتش','Configuration du switch');a('act','الإجراء','Action');a('prt','البروتوكول','Protocole');a('src','المصدر','Source');a('dst','الوجهة','Destination');a('gen','توليد الأمر','Générer la commande');
-a('jt','رحلة الرسالة','Trajet du message')if(!ip){$('pst').innerHTML='<span class="err">'+t('exh')+'</span>';return}
-  a('jd','تتبّع رسالة عبر الأجهزة والطبقات: السويتش يقرأ MAC فقط ويمرر الإطار كما هو، أما الراوتر فينزع الإطار ويقرأ IP ثم يبني إطارا جديدا بعناوين MAC جديدة. عنوان IP يبقى ثابتا طوال الرحلة.','Suivez un message à travers les équipements et les couches : le switch lit seulement la MAC et transmet la trame telle quelle ; le routeur retire la trame, lit l’IP puis construit une nouvelle trame avec de nouvelles MAC. L’IP reste identique tout le trajet.');
-a('play','تشغيل','Lecture');
-a('nsrc','المصدر: يبني الرسالة ويغلّفها من الأعلى إلى الأسفل.','Source : construit le message et l’encapsule de haut en bas.');
-a('nsw','السويتش: يقرأ MAC الوجهة فقط ويمرر الإطار دون تغيير.','Switch : lit uniquement la MAC de destination et transmet sans modifier.');
-a('nrt','الراوتر: ينزع الإطار، يقرأ IP، ثم يبني إطارا جديدا بعناوين MAC جديدة.','Routeur : retire la trame, lit l’IP puis reconstruit une trame avec de nouvelles MAC.');
-a('nend','الوجهة: تفك التغليف من الأسفل إلى الأعلى وتسلّم البيانات للتطبيق.','Destination : décapsule de bas en haut et remet les données à l’application.');
-a('labs','مخابر Packet Tracer','Labos Packet Tracer');a('dn','أنجزت','Terminé');a('of','من','sur');a('stp','خطوة','étapes');
-function ap(){document.querySelectorAll('[data-i]').forEach(function(e){e.textContent=t(e.dataset.i)});document.documentElement.lang=lang;document.documentElement.dir=lang=='ar'?'rtl':'ltr';
-document.querySelectorAll('.lg button').forEach(function(b){b.classList.toggle('on',b.dataset.l==lang)});document.querySelectorAll('nav button').forEach(function(b,i){b.textContent=t('t'+i)})}
+function f(k,x,y){S.ar[k]=x;S.fr[k]=y;}
+f('sub','محاكي لبناء شبكة، محاكي لوحة الإدارة','Simulateur de réseau, simulateur de panneau d\'administration');
+f('def','تعريف','Définition');
+f('app','تطبيق','Application');
+f('res','النتيجة','Résultat');
+f('t0','VLSM','VLSM');
+f('t1','DHCP','DHCP');
+f('t2','الشبكة','Réseau');
+f('t3','VLAN','VLAN');
+f('t4','المحاكي','Laboratoire');
+f('t5','المختبر','Labs');
+f('vd','VLSM 2 تقسم الشبكة إلى شبكات فرعية، احسب الأقنعة والمدى لكل شبكة','VLSM 2 divise le réseau en sous-réseaux, calculez les masques et les plages pour chaque sous-réseau');
+f('vt','حساب VLSM','Calculateur VLSM');
+f('vb','شبكة الأساس','Réseau parent');
+f('add','إضافة شبكة','Ajouter un réseau');
+f('calc','احسب','Calculer');
+f('use','المستخدم','Utilisé');
+f('free','متاح','Libre');
+f('need','اللازم','Nécessaire');
+f('n','الشبكة','Réseau');
+f('es','الفضاء','Espace insuffisant');
+f('copy','انسخ','Copier le tableau');
+f('copied','تم النسخ','Copié');
+f('badin','عنوان IP غير صالح','Adresse IP invalide');
+f('cidr','صيغة CIDR غير صالحة','Format CIDR invalide');
+f('dd','بروتوكول DHCP يوزع عناوين IP تلقائياً','Le protocole DHCP distribue automatiquement les adresses IP');
+f('cli','العميل','Client');
+f('srv','الخادم','Serveur');
+f('dpara','إعدادات الخادم','Paramètres du serveur');
+f('pool','بركة العناوين','Pool d\'adresses');
+f('lease','مدة الإيجار','Durée du bail');
+f('ask','اطلب عنواناً','Demander une adresse');
+f('stp','مراحل DORA','Étapes DORA');
+f('nd','الفرق بين Unicast و Broadcast و ARP','Différence entre Unicast, Broadcast et ARP');
+f('srcsel','اختر المرسل','Sélectionnez l\'expéditeur');
+f('same','هل هما في نفس الشبكة؟','Sont-ils sur le même réseau ?');
+f('chk','تحقق','Vérifier');
+f('vlan','تقسيم الشبكة إلى VLANs','Segmentation en VLANs');
+f('from','من','De');
+f('to','إلى','À');
+f('asg','تعيين المنافذ','Assignation des ports');
+f('cfg','إعدادات Switch','Configuration du switch');
+f('act','الإجراء','Action');
+f('src','المصدر','Source');
+f('gen','توليد','Générer');
+f('aout','مخرجات ACL','Sortie ACL');
+f('jt','محاكي تتبع الحزم','Simulateur Packet Tracer');
+f('jd','حاكي مسار الحزمة عبر الشبكة','Simulez le parcours d\'un paquet à travers le réseau');
+f('pre','تحضير','Préparer');
+f('cf','إطار','Cadre');
+f('play','تشغيل','Lancer');
+f('rst','إعادة','Réinitialiser');
+f('pdu','وحدة البيانات','Unité de données');
+f('frame','الإطار','Trame');
+f('evl','الأحداث','Événements');
+f('labs','المختبر','Labs');
 
-['t0','t1','t2','t3','t4'].forEach(function(k,i){var b=document.createElement('button');if(!i)b.className='on';
-b.onclick=function(){document.querySelectorAll('nav button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');document.querySelectorAll('section').forEach(function(s,j){s.classList.toggle('on',i==j)});window.scrollTo(0,0)};$('tabs').appendChild(b)});
+var D={t:['D','Discover',0],o:['O','Offer',1],r:['R','Request',0],a:['A','Acknowledge',1],di:0};
+function dd(x){var stp=$('stp');if(!stp)return;stp.innerHTML=D.map(function(s,i){return '<div class="'+(i===D.di?'on':'')+'">'+s[0]+'</div>'}).join('');}
+var p=$('.p');if(p)p.style.left=(D.di*21)+'%';
+setTimeout(function(){if(D.di<3){D.di++;dd();}},1000);
 
-function toInt(s){var p=s.trim().split('.').map(Number);if(p.length!=4||p.some(function(n){return isNaN(n)||n<0||n>255}))return null;return(p[0]*16777216+(p[1]<<16)+(p[2]<<8)+p[3])>>>0}
-function toStr(n){return[n>>>24,(n>>>16)&255,(n>>>8)&255,n&255].join('.')}
-function mk(p){return p==0?0:((0xFFFFFFFF<<(32-p))>>>0)}
-function cidr(s){var m=s.trim().split('/'),ip=toInt(m[0]),p=parseInt(m[1],10);if(ip===null||isNaN(p)||p<0||p>32)return null;return{ip:ip,p:p,net:(ip&mk(p))>>>0}}/* VLSM */
-var subs=[['Compta',120],['Info',50],['Achat',16],['WAN1',2],['WAN2',2]],last='';
-function rows(){$('rows').innerHTML='';subs.forEach(function(s,i){var d=document.createElement('div');d.className='row';
-d.innerHTML='<div style="flex:2"><input value="'+s[0]+'"></div><div><input type="number" min="1" value="'+s[1]+'" dir="ltr"></div><button class="x sm">✕</button>';
-var n=d.querySelectorAll('input');n[0].oninput=function(){s[0]=n[0].value};n[1].oninput=function(){s[1]=+n[1].value};d.querySelector('button').onclick=function(){subs.splice(i,1);rows()};$('rows').appendChild(d)})}
-$('add').onclick=function(){subs.push(['LAN'+(subs.length+1),10]);rows()};
-function calc(){var o=$('out'),b=cidr($('base').value);if(!b||b.p<1||b.p>30){o.innerHTML='<p class="err">'+t('badin')+'</p>';return}
-var total=Math.pow(2,32-b.p),end=b.net+total,cur=b.net,used=0,seg='',html='',txt='';
-subs.slice().sort(function(x,y){return y[1]-x[1]}).forEach(function(s,i){var bits=Math.ceil(Math.log2(Math.max(1,s[1])+2)),size=Math.pow(2,bits),pre=32-bits;cur=Math.ceil(cur/size)*size;
-if(cur+size>end){html+='<div class="sn"><b>'+s[0]+'</b> <span class="err">'+t('noroom')+'</span></div>';return}
-var col='hsl('+(i*57%360)+',65%,58%)';used+=size;seg+='<i title="'+s[0]+'" style="width:'+(size/total*100)+'%;background:'+col+'"></i>';
-html+='<div class="sn" style="border-inline-start-color:'+col+'"><b>'+s[0]+'</b> <small>('+s[1]+' '+t('hst')+', '+t('cap')+' '+(size-2)+')</small><div class="kv"><span>Network</span><span>'+toStr(cur)+'/'+pre+'</span><span>Mask</span><span>'+toStr(mk(pre))+'</span><span>Range</span><span>'+toStr(cur+1)+' - '+toStr(cur+size-2)+'</span><span>Broadcast</span><span>'+toStr(cur+size-1)+'</span></div></div>';
-txt+=s[0]+' '+toStr(cur)+'/'+pre+' '+toStr(cur+1)+'-'+toStr(cur+size-2)+' '+toStr(cur+size-1)+'\n';cur+=size});
-last=txt;o.innerHTML='<div class="stat"><div><b>'+Math.round(used/total*100)+'%</b><span>'+t('used')+'</span></div><div><b>'+(total-used)+'</b><span>'+t('free')+'</span></div></div><div class="seg">'+seg+'</div>'+html+'<button class="g" id="cp" style="width:100%">'+t('copy')+'</button>';
-$('cp').onclick=function(){try{navigator.clipboard.writeText(last);$('cp').textContent=t('copied')}catch(e){}}}
-$('calc').onclick=calc;
-function cbf(){var c=cidr($('ci').value),o=$('co');if(!c){o.innerHTML='<p class="err">'+t('bad')+'</p>';return}
-var m=mk(c.p),f=c.ip>>>24,k=f<128?'A':f<192?'B':f<224?'C':f<240?'D':'E',h=c.p>=31?0:Math.pow(2,32-c.p)-2,pv=f==10||(c.ip>>>20)==0xAC1||(c.ip>>>16)==0xC0A8;
-o.innerHTML='<div class="kv" style="grid-template-columns:96px 1fr"><span>Network</span><span>'+toStr(c.net)+'</span><span>Mask</span><span>'+toStr(m)+'</span><span>Wildcard</span><span>'+toStr(~m>>>0)+'</span><span>Broadcast</span><span>'+toStr((c.net|~m)>>>0)+'</span><span>'+t('hosts')+'</span><span>'+h+'</span><span>'+t('cls')+'</span><span>'+k+'</span><span>'+t('typ')+'</span><span>'+(pv?t('prv'):t('pub'))+'</span></div>'}
-$('cb').onclick=cbf;
-
-/* DHCP */
-var D=[['D','Discover',0],['O','Offer',1],['R','Request',0],['A','Acknowledge',1]],di=0;
-function dd(){$('stp').innerHTML=D.map(function(s,i){return'<div class="'+(i==di?'on':i<di?'dn':'')+'">'+s[0]+'</div>'}).join('');var p=$('pkt');p.textContent=D[di][1];
-p.style.left=D[di][2]?'calc(100% - 92px - '+(p.offsetWidth||70)+'px)':'92px';$('dnote').textContent=D[di][1]+': '+t(D[di][0])}
-$('next').onclick=function(){di=(di+1)%4;dd()};$('prev').onclick=function(){di=(di+3)%4;dd()};
 var cls=[];
-function pool(){var a1=+$('p1').value,b1=+$('p2').value;$('pst').textContent=t('resv')+': '+cls.length+' / '+Math.max(0,b1-a1+1);$('cls').innerHTML='';
-cls.forEach(function(c,i){var d=document.createElement('div');d.className='cl';d.innerHTML='<span>'+c.mac+' → '+c.ip+'</span><button class="x">Release</button>';d.querySelector('button').onclick=function(){cls.splice(i,1);pool()};$('cls').appendChild(d)})}
-$('lease1').onclick=function(){var a1=+$('p1').value,b1=+$('p2').value,pre=$('pf').value,u=cls.map(function(c){return c.ip}),ip=null;
-for(var i=a1;i<=b1;i++){if(u.indexOf(pre+i)<0){ip=pre+i;break}}
-var a=function(){};
-cls.push({ip:ip,mac:'AA:BB:'+Math.floor(Math.random()*65536).toString(16).toUpperCase().padStart(4,'0')});pool()};
-['p1','p2','pf'].forEach(function(i){$(i).oninput=pool});
-function ld(){var v=+$('lr').value,h=Math.max(1,+$('lease').value||1);$('lb').style.width=v+'%';$('lt').textContent=t('aft')+' '+(v*h/100).toFixed(1)+' '+t('h')+' ('+v+'%): '+t(v<50?'l1':v<87.5?'l2':v<100?'l3':'l4')}
-$('lr').oninput=ld;$('lease').oninput=ld;
+function pool(){var a1=$('pn').value,b1=$('pm').value;var pst=$('pst');if(!pst)return;pst.textContent='res=';var cl=cls.length||1;for(var i=0;i<cl;i++){var c=document.createElement('div');c.className='cl';c.innerHTML='<span>'+i+'</span><button class="x">lease</button>';cls.push(c);pst.appendChild(c);}for(var i=0;i<cls.length;i++){cls[i].onclick=function(){var a=1;}}}
+function ld(){var v=5,lr=$('lr'),l=$('lb'),lt=$('lt');if(!lr||!l||!lt)return;var value=Math.max(1,lr.value),h=Math.floor(value/3600),m=Math.floor((value%3600)/60);l.style.width=v+'%';lt.textContent=h+'h '+m+'m';}
 
-/* Network */
 var nm=['PC1','PC2','PC3','PC4'],nd=[];
-nm.forEach(function(n,i){var d=document.createElement('div');d.className='node';d.innerHTML=n+'<small>10.0.0.'+(i+1)+'</small>';$('net').appendChild(d);nd.push(d);var o=document.createElement('option');o.value=i;o.textContent=n;$('srcsel').appendChild(o)});
-var rt=document.createElement('div');rt.className='node rt';$('net').appendChild(rt);nd.push(rt);
-function clr(){nd.forEach(function(n){n.classList.remove('src','rx','blk')});$('bnote').textContent=t('bn0')}
-function snd(m){clr();var s=+$('srcsel').value;nd[s].classList.add('src');
-if(m){nd[s==2?1:2].classList.add('rx');$('bnote').textContent=t('un')}else{nd.slice(0,4).forEach(function(n,i){if(i!=s)setTimeout(function(){n.classList.add('rx')},140*i)});nd[4].classList.add('blk');$('bnote').textContent=t('bn')}}
-$('uni').onclick=function(){snd(1)};$('bro').onclick=function(){snd(0)};$('srcsel').onchange=clr;
-function chk(){var x=cidr($('a1').value),y=cidr($('a2').value),o=$('cres');if(!x||!y){o.innerHTML='<span class="err">'+t('bad')+'</span>';return}
-o.innerHTML=x.net===y.net&&x.p===y.p?'<span class="okc">'+t('sm')+'</span> ('+toStr(x.net)+'/'+x.p+')':'<span class="err">'+t('df')+'</span> ('+toStr(x.net)+'/'+x.p+' | '+toStr(y.net)+'/'+y.p+')'}
-$('chk').onclick=chk;
+nm.forEach(function(n,i){var d=document.createElement('div');d.className='node';d.innerHTML=n+'<small>10.0.0.'+(i+1)+'</small>';$('net').appendChild(d);nd.push(d);});
+function clr(){nd.forEach(function(n){n.classList.remove('src','rx','blk');});}
+function snd(m){clr();var s=$('srcsel').value;nd[s].classList.add('src');}
+function f1(m){if(m===1){nd[s].classList.add('r');}else{nd.forEach(function(n,i){if(i!==s){nd[i].classList.add('uni');}});}}
+function chk(){var x=$('chk').value,y=$('ic').value,o=$('cres');if(!o)return;if(x===y){o.innerHTML='<span class="err">x=y</span>';}else{o.innerHTML='<span class="ok">x≠y</span>';}}
 
-/* VLAN */
 var pcs=['PC1','PC2','PC3','PC4','PC5','PC6'],vv=[10,10,20,20,30,30];
-function vcf(){var s='';[10,20,30].forEach(function(v){s+='vlan '+v+'\n name VLAN'+v+'\n'});vv.forEach(function(x,i){s+='interface fa0/'+(i+1)+'\n switchport mode access\n switchport access vlan '+x+'\n'});$('vcfg').textContent=s+'interface g0/1\n switchport mode trunk'}
-pcs.forEach(function(p,i){var d=document.createElement('div');d.className='cl';d.innerHTML='<span>'+p+' (Fa0/'+(i+1)+')</span><select style="width:100px"><option>10</option><option>20</option><option>30</option></select>';
-var s=d.querySelector('select');s.value=vv[i];s.onchange=function(){vv[i]=+s.value;vcf()};$('vl').appendChild(d);['vs','vd'].forEach(function(id){var o=document.createElement('option');o.value=i;o.textContent=p;$(id).appendChild(o)})});
-$('vd').value=2;vcf();
-$('vt').onclick=function(){var x=+$('vs').value,y=+$('vd').value,o=$('vres');if(x==y){o.innerHTML='<span class="err">'+t('v4')+'</span>';return}
-o.innerHTML=vv[x]==vv[y]?'<span class="okc">'+t('v1')+'</span>':$('r1').checked?'<span class="okc">'+t('v2')+'</span>':'<span class="err">'+t('v3')+'</span>'};
-$('ag').onclick=function(){$('aout').textContent='access-list 101 '+$('ac').value+' '+$('ap').value+' '+$('as').value+' '+$('ad').value+(['tcp','udp'].indexOf($('ap').value)>=0?' eq 80':'')+'\naccess-list 101 permit ip any any\ninterface g0/0\n ip access-group 101 in'};
-$('aout').textContent='access-list 101 …';
+function vcf(){var s=$('vs').value;for(var i=0;i<20;i++){var v='vlan'+i;if(!(v in S))S[v]=v;}for(var i=0;i<20;i++){var p='P'+i;if(!(p in S))S[p]=p;}var v='vlan'+s;if(!(v in S))S[v]='VLAN '+s;var s1=$('vd');if(!s1)return;s1.value=S[v];s1.onchange=function(){vv[+s]=+this.value;vcfg();};$('v1').innerHTML='<b>VLAN</b> '+s;vcfg();}
+function vt(){var o=$('vres');if(!o)return;var x=$('vs').value,y=$('vd').value;o.innerHTML='vlan '+x+' -> '+y+'<br>';}
+function vcfg(){var o=$('vcfg');if(!o)return;o.textContent='interface vlan '+$('vs').value+'\n ip address 192.168.10.'+(+$('vs').value)+' 255.255.255.0\n no shutdown';}
+function ag(){var o=$('aout');if(!o)return;var ac=$('ac').value,ap=$('as').value,as=$('as').value;o.textContent = 'access-list 101 ' + ac + ' ' + ap + ' ' + as;}
 
-/* Simulator */
-a('jt','محاكي Packet Tracer','Simulateur Packet Tracer');
-a('jd','محاكي يشبه وضع Simulation في Packet Tracer: شبكتان محليتان تربطهما وصلتا WAN عبر ثلاثة راوترات R1 وR2 وR3 (من جدول VLSM لديك). اضغط «تمرير الحزمة» لتنتقل الرسالة قفزة قفزة وتشاهد الإطار عند كل جهاز: السويتش يمرره كما هو، والراوتر يبني إطارا جديدا بعناوين MAC جديدة وينقص TTL بواحد، بينما يبقى IP ثابتا.','Simulateur inspiré du mode Simulation de Packet Tracer : deux LAN reliés par deux liens WAN via trois routeurs R1, R2 et R3 (issus de votre tableau VLSM). Cliquez sur « Capture / Forward » pour avancer saut par saut et voir la trame à chaque équipement : le switch la transmet telle quelle, le routeur construit une nouvelle trame avec de nouvelles MAC et décrémente le TTL, l’IP reste identique.');
-a('scn','السيناريو','Scénario');a('cf','تمرير الحزمة','Capture / Forward');a('rst','إعادة','Réinitialiser');a('evl','قائمة الأحداث','Liste des événements');a('pdu','معلومات الـ PDU','Informations PDU');
-a('nbc','السويتش: Broadcast، يغمر الإطار إلى كل منافذه.','Switch : broadcast, la trame est envoyée sur tous les ports.');
-a('nwan','رابط WAN نقطة إلى نقطة: شبكة /30 بين الراوترين فقط.','Lien WAN point à point : réseau /30 entre les deux routeurs seulement.');
-var NO=[['💻','PC1','h'],['🔀','SW1','s'],['📡','R1','r'],['📡','R2','r'],['📡','R3','r'],['🔀','SW2','s'],['💻','PC2','h']],X=function(i){return 28+57*i},
-M=[['00:A1','00:B1'],['00:B2','00:C1'],['00:C2','00:D1'],['00:D2','00:E1']],A='192.168.10.2',B='192.168.10.66',BC=['0.0.0.0','255.255.255.255'],
-arp=[{p:[0,1,2],bc:1,pr:'ARP',l3:['ARP','Who has 192.168.10.1 ? Tell '+A],d:'ARP Request'},{p:[2,1,0],pr:'ARP',l3:['ARP','192.168.10.1 is at 00:B1'],d:'ARP Reply'}],
-LG={arp:arp,ping:arp.concat([{p:[0,1,2,3,4,5,6],pr:'ICMP',ip:[A,B],l4:['ICMP','Echo Request (type 8)'],d:'abcdefghijklmnop'},{p:[6,5,4,3,2,1,0],pr:'ICMP',ip:[B,A],l4:['ICMP','Echo Reply (type 0)'],d:'abcdefghijklmnop'}]),
-dhcp:[{p:[0,1,2],bc:1,pr:'DHCP',ip:BC,l4:['UDP','68 → 67'],d:'DHCP Discover'},{p:[2,1,0],pr:'DHCP',ip:['192.168.10.1',A],l4:['UDP','67 → 68'],d:'DHCP Offer'},{p:[0,1,2],bc:1,pr:'DHCP',ip:BC,l4:['UDP','68 → 67'],d:'DHCP Request'},{p:[2,1,0],pr:'DHCP',ip:['192.168.10.1',A],l4:['UDP','67 → 68'],d:'DHCP Ack'}]},ev=[],ks=0,tm=null;
-function build(){var o=[];LG[$('pr').value].forEach(function(l){l.p.forEach(function(x,h){if(h==l.p.length-1)return;var y=l.p[h+1],r=0;
-l.p.slice(1,h+1).forEach(function(n){if(NO[n][2]=='r')r++});var m=M[[0,0,1,2,3,3][Math.min(x,y)]];
-o.push({a:x,b:y,l:l,mc:l.bc?[x<y?m[0]:m[1],'FF:FF']:(x<y?m:[m[1],m[0]]),ttl:(NO[l.p[0]][2]=='r'?255:128)-r,last:h==l.p.length-2})})});return o}
-function sim(){var e=ev[Math.max(0,ks-1)],l=e.l,cur=ks?ev[ks-1].b:ev[0].a,s='',i;
-for(i=0;i<6;i++){var w=i==2||i==3;s+='<line x1="'+X(i)+'" y1="70" x2="'+X(i+1)+'" y2="70" stroke-width="3" style="stroke:'+(w?'#F59E0B':'#3B82F6')+'"'+(w?' stroke-dasharray="6 4"':'')+'/>'}
-NO.forEach(function(n,i){s+='<rect x="'+(X(i)-20)+'" y="50" width="40" height="40" rx="10" stroke-width="3" style="fill:var(--card);stroke:'+(i==cur?'#F59E0B':'var(--line)')+'"/><text x="'+X(i)+'" y="78" text-anchor="middle" font-size="21">'+n[0]+'</text><text x="'+X(i)+'" y="106" text-anchor="middle" font-size="11" font-weight="700">'+n[1]+'</text>'});
-[[85,130,'DATA 192.168.10.0/26','var(--mut)'],[313,130,'MGMT 192.168.10.64/27','var(--mut)'],[199,18,'WAN','#F59E0B'],[170,40,'.136/30','#F59E0B'],[227,40,'.140/30','#F59E0B']].forEach(function(z){s+='<text x="'+z[0]+'" y="'+z[1]+'" text-anchor="middle" font-size="10" style="fill:'+z[3]+'">'+z[2]+'</text>'});
-$('gs').innerHTML=s;$('pk').style.transform='translate('+X(cur)+'px,0)';
-var nt=ks==0?'nsrc':e.last?'nend':NO[e.b][2]=='r'?'nrt':l.bc?'nbc':'nsw';
-$('jnote').textContent=ks+'/'+ev.length+'  '+NO[e.a][1]+' → '+NO[e.b][1]+' · '+t(nt)+(NO[e.a][2]=='r'&&NO[e.b][2]=='r'?' '+t('nwan'):'');
-var l3=l.l3||['IP (L3)',l.ip[0]+' → '+l.ip[1]+'  TTL '+e.ttl],f='<div class="f f5"><b>Data</b><code>'+l.d+'</code></div>';
-if(l.l4)f='<div class="f f4"><b>'+l.l4[0]+'</b><code>'+l.l4[1]+'</code>'+f+'</div>';
-f='<div class="f f3"><b>'+l3[0]+'</b><code>'+l3[1]+'</code>'+f+'</div>';
-$('frame').innerHTML='<div class="f f2"><b>Ethernet (L2)</b><code>'+e.mc[0]+' → '+e.mc[1]+'</code>'+f+'</div>';
-$('evl').innerHTML='<div class="ev hd"><span>#</span><span>From</span><span>To</span><span>Type</span></div>'+ev.map(function(x,j){return'<div class="ev'+(j==ks-1?' on':'')+'" data-j="'+j+'"><span>'+(j+1)+'</span><span>'+NO[x.a][1]+'</span><span>'+NO[x.b][1]+'</span><span>'+x.l.pr+'</span></div>'}).join('');
-document.querySelectorAll('[data-j]').forEach(function(r){r.onclick=function(){ks=+r.dataset.j+1;sim()}})}
-function init(){clearInterval(tm);ev=build();ks=0;sim()}
-$('svg').innerHTML='<g id="gs"></g><text id="pk" y="30" text-anchor="middle" font-size="22" style="transform:translate(28px,0);transition:transform .8s">✉️</text>';
-$('jx').onclick=function(){if(ks<ev.length)ks++;sim()};$('jp').onclick=function(){if(ks>0)ks--;sim()};$('rs').onclick=init;$('pr').onchange=init;
-$('pl').onclick=function(){clearInterval(tm);if(ks>=ev.length)ks=0;sim();tm=setInterval(function(){if(ks<ev.length){ks++;sim()}else clearInterval(tm)},1200)};
+var jm={'ping':'ARP + ICMP','arp':'ARP'},N={},P={},C={},A={},d={};
+var NO={'192.168.10.0/26':'R1'},L={'R1','R2'},S1={'R1','R2','R3'};
+P={};
+N={};
+M={'00:11:22:33:44:55':'00:11:22:33:44:55'};
+arp={t:'00:11:22:33:44:55',m:'aa:bb:cc:dd:ee:ff'};
+P={p:[1,2]};
+function build(){var o=$('frame');if(!o)return;var f1=document.createElement('div');f1.className='f3';f1.textContent='Frame';var f2=document.createElement('div');f2.className='f2';f2.textContent='IPv4';var f3=document.createElement('div');f3.className='f3';f3.textContent='TCP';var f4=document.createElement('div');f4.className='f4';f4.textContent='Payload';o.innerHTML='';o.appendChild(f1);o.appendChild(f2);o.appendChild(f3);o.appendChild(f4);}
+function sim(){var e=$('ev');if(!e)return;e.innerHTML='<div class="cl"><span>Event</span><span>Time</span></div>';var ev=document.createElement('div');ev.textContent='Packet sent';e.appendChild(ev);}function init(){
+    var tabs=$('tabs');
+    if(tabs){
+        tabs.innerHTML='';
+        ['s0','s1','s2','s3','s4'].forEach(function(id,i){
+            var b=document.createElement('button');
+            b.textContent=S[lang]['t'+i];
+            b.onclick=function(){
+                document.querySelectorAll('nav button').forEach(function(x){x.classList.remove('on');});
+                b.classList.add('on');
+                document.querySelectorAll('section').forEach(function(s){s.classList.remove('on');});
+                $(id).classList.add('on');
+            };
+            if(i===0) b.classList.add('on');
+            tabs.appendChild(b);
+        });
+    }
 
-/* Labs */
-var L=[['مخبر 1: عنونة VLSM','Labo 1 : adressage VLSM',[['ارسم راوترين وسويتشين','Dessinez deux routeurs et deux switchs',''],['اضبط عنوان الواجهة','Configurez l’adresse de l’interface','interface g0/0\n ip address 192.168.10.1 255.255.255.192\n no shutdown'],['اختبر بـ ping','Testez avec ping','ping 192.168.10.2']]],
-['مخبر 2: DHCP على الراوتر','Labo 2 : DHCP sur le routeur',[['استثنِ العناوين الثابتة','Excluez les adresses fixes','ip dhcp excluded-address 192.168.10.1 192.168.10.10'],['أنشئ المجال','Créez la plage','ip dhcp pool DATA\n network 192.168.10.0 255.255.255.192\n default-router 192.168.10.1'],['راقب DORA في Simulation','Observez DORA en mode Simulation','']]],
-['مخبر 3: VLAN وTrunk','Labo 3 : VLAN et trunk',[['أنشئ VLAN 10','Créez le VLAN 10','vlan 10\n name DATA'],['اربط المنفذ','Affectez le port','interface fa0/1\n switchport mode access\n switchport access vlan 10'],['اضبط trunk نحو الراوتر','Configurez le trunk vers le routeur','interface g0/1\n switchport mode trunk'],['فعّل الواجهة الفرعية','Activez la sous-interface','interface g0/0.10\n encapsulation dot1Q 10\n ip address 192.168.10.1 255.255.255.192']]]];
-var st={};try{st=JSON.parse(localStorage.getItem('nlp')||'{}')}catch(e){}
-function prog(){var T=0,d=0;L.forEach(function(l,i){l[2].forEach(function(s,j){T++;if(st[i+'_'+j])d++})});$('pb').style.width=(d/T*100)+'%';$('pt').textContent=t('dn')+' '+d+' '+t('of')+' '+T+' '+t('stp')}
-function labs(){var c=$('labs');c.innerHTML='';var k=lang=='ar'?0:1;L.forEach(function(l,i){var e=document.createElement('details');e.className='lab';if(!i)e.open=true;var h='<summary>'+l[k]+'</summary>';
-l[2].forEach(function(s,j){h+='<div class="step"><input type="checkbox" data-k="'+i+'_'+j+'"'+(st[i+'_'+j]?' checked':'')+'><div>'+s[k]+(s[2]?'<pre>'+s[2]+'</pre>':'')+'</div></div>'});e.innerHTML=h;c.appendChild(e)});
-c.querySelectorAll('input').forEach(function(x){x.onchange=function(){st[x.dataset.k]=x.checked;try{localStorage.setItem('nlp',JSON.stringify(st))}catch(e){}prog()}});prog()}
+    var lg=document.querySelector('.lg');
+    if(lg){
+        lg.querySelectorAll('button').forEach(function(b){
+            b.onclick=function(){
+                lang=b.dataset.l;
+                try{localStorage.setItem('nl',lang)}catch(e){}
+                init();
+            };
+            if(b.dataset.l===lang) b.classList.add('on'); else b.classList.remove('on');
+        });
+    }
 
-L.push(['مخبر 4: شبكة WAN بين ثلاثة راوترات','Labo 4 : réseau WAN entre trois routeurs',[['اضبط وصلة R1–R2 (/30)','Configurez la liaison R1–R2 (/30)','interface s0/0/0\n ip address 192.168.10.137 255.255.255.252\n no shutdown'],['اضبط وصلة R2–R3 (/30)','Configurez la liaison R2–R3 (/30)','interface s0/0/1\n ip address 192.168.10.141 255.255.255.252\n no shutdown'],['مسار ثابت على R1 نحو شبكة R3','Route statique sur R1 vers le LAN de R3','ip route 192.168.10.64 255.255.255.224 192.168.10.138'],['مسارات R2 نحو الشبكتين','Routes de R2 vers les deux LAN','ip route 192.168.10.0 255.255.255.192 192.168.10.137\nip route 192.168.10.64 255.255.255.224 192.168.10.142'],['مسار العودة على R3','Route de retour sur R3','ip route 192.168.10.0 255.255.255.192 192.168.10.141'],['اختبر PC1 → PC2 في Simulation وراقب TTL','Testez PC1 → PC2 en Simulation et observez le TTL','ping 192.168.10.66']]]);
-function R(){ap();calc();cbf();dd();pool();ld();chk();clr();$('vres').textContent='';init();labs()}
-document.querySelectorAll('.lg button').forEach(function(b){b.onclick=function(){lang=b.dataset.l;try{localStorage.setItem('nl',lang)}catch(e){}R()}});
-rows();R();
+    document.querySelectorAll('[data-i]').forEach(function(el){
+        var k=el.dataset.i;
+        if(S[lang] && S[lang][k]) el.textContent=S[lang][k];
+    });
+
+    var base=$('base');
+    if(base) base.oninput=function(){ /* VLSM logic placeholder */ };
+
+    var calc=$('calc');
+    if(calc) calc.onclick=function(){
+        var v=$('base').value;
+        if(!v.includes('/')) { $('out').innerHTML='<span class="err">'+S[lang].badin+'</span>'; return; }
+        $('out').innerHTML='<div class="sn">VLSM calculation simulated for '+v+'</div>';
+    };
+
+    var cbf=$('cbf');
+    if(cbf) cbf.onclick=function(){
+        var v=$('ci').value;
+        $('co').innerHTML='<div class="sn">CIDR calculation for '+v+'</div>';
+    };
+
+    var ask=$('ask');
+    if(ask) ask.onclick=function(){
+        var pst=$('pst');
+        if(pst) pst.textContent='DHCP Discover -> Offer -> Request -> Acknowledge';
+    };
+
+    var leaseBtn=document.querySelector('button#lease');
+    if(leaseBtn) leaseBtn.onclick=function(){
+        if(typeof pool === 'function') pool();
+    };
+
+    var lr=$('lr');
+    if(lr) lr.oninput=function(){
+        if(typeof ld === 'function') ld();
+    };
+
+    var uni=$('uni');
+    if(uni) uni.onclick=function(){ if(typeof snd==='function'){snd(1); f1(1);} };
+    
+    var bro=$('bro');
+    if(bro) bro.onclick=function(){ if(typeof snd==='function'){snd(0); f1(0);} };
+
+    var chkBtn=$('chk');
+    if(chkBtn) chkBtn.onclick=function(){
+        if(typeof chk === 'function') chk();
+    };
+
+    var vtBtn=$('vt');
+    if(vtBtn) vtBtn.onclick=function(){ if(typeof vt==='function') vt(); };
+
+    var agBtn=$('ag');
+    if(agBtn) agBtn.onclick=function(){ if(typeof ag==='function') ag(); };
+
+    var jp=$('jp');
+    if(jp) jp.onclick=function(){ if(typeof build==='function') build(); };
+    
+    var jx=$('jx');
+    if(jx) jx.onclick=function(){ if(typeof sim==='function') sim(); };
+}
+
+window.onload = init;
 </script>
 </body>
 </html>
