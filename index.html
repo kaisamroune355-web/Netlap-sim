@@ -23,7 +23,7 @@ nav button.on{background:var(--ac);color:#04121F;border-color:transparent}
 .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:16px;margin-bottom:14px}
 .df{display:inline-start;padding:4px 8px;font-size:12px;border-radius:8px;background:var(--pri2);color:var(--ac);margin-bottom:10px}
 h2{font-size:18px;margin:0 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.bd{font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:20px;background:#12382F;color:var(--ok)}
+.bd{font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:20px;background:#12382F;color:#2ecc71}
 .bd.hot{background:#3A2A10;color:var(--hot)}
 .bd.info{background:#12243F;color:var(--ac)}
 .ds{color:var(--mut);margin:0 0 14px;font-size:14.5px}
@@ -46,8 +46,8 @@ section.on{display:block}
 .seg{display:flex;height:22px;border-radius:11px;overflow:hidden;background:var(--line);margin:4px 0 14px;direction:ltr}
 .sn{background:var(--inp);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;font-family:monospace;direction:ltr;font-size:13.5px}
 .kv{display:grid;grid-template-columns:84px 1fr;gap:10px;font-size:13.5px;direction:ltr;text-align:left;margin-top:8px}
-.err{color:var(--bad);font-weight:600}
-.ok{color:var(--ok);font-weight:600}
+.err{color:#ff4d4d;font-weight:600}
+.ok{color:#2ecc71;font-weight:600}
 .lane{position:relative;height:60px;direction:ltr;margin:0 8px 12px}
 .lane::before{content:'';position:absolute;top:8px;width:100%;height:4px;background:var(--line);border-radius:4px}
 .lane .c{left:0}.lane .r{right:0}
@@ -66,18 +66,17 @@ section.on{display:block}
 .node.r{border-color:var(--hot)}
 .node.r.sel{border-color:var(--hot);background:rgba(245,158,11,.12)}
 .node small{display:block;font-weight:400;font-size:10px;color:var(--mut);margin-top:2px}
-.cl{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--inp);border:1px solid var(--line);border-radius:12px;padding:8px;margin-bottom:8px;font-size:12.5px}
 .jn{position:relative;display:grid;grid-template-columns:repeat(5,1fr);direction:ltr;text-align:center;margin:0 0 8px}
 .jn::before{content:'';position:absolute;top:4px;left:10%;right:10%;height:2px;background:var(--line);z-index:0}
 .jn div{position:relative;z-index:1;background:var(--inp);border:1px solid var(--line);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:11px;margin:0 auto;color:var(--ink)}
 .jn div.on{border-color:var(--ac);background:var(--ac);color:#04121F}
-.jn div.err{border-color:var(--bad);background:#3A1414;color:var(--bad)}
+.jn div.err{border-color:#ff4d4d;background:#3A1414;color:#ff4d4d}
 .pk{position:absolute;top:30px;font-size:24px;transform:translateX(-50%);transition:left .7s}
 #f{border:2px solid var(--line);border-radius:12px;padding:6px 10px;margin-top:6px;font-size:12.5px;direction:ltr;text-align:left}
 .f2{border-color:#B85CF6}
 .f3{border-color:#3BB2F6}
 .f4{border-color:var(--hot)}
-.f5{border-color:var(--ok)}
+.f5{border-color:#2ecc71}
 .note{background:var(--inp);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13.5px;margin:8px 0}
 details{border-top:1px solid var(--line);padding:4px 0}
 details:last-child{border-bottom:0}
@@ -155,104 +154,46 @@ svg text{fill:#EAF0FF;font-family:monospace}
 <h2 style="font-size:16px;margin-top:6px" data-i="evl"></h2><div class="evl" id="evl"></div></div>
 <div class="card"><h2><span class="bd b2" data-i="app"></span><span data-i="labs"></span></h2><div class="bar"><i id="prg"></i></div><div class="labs" id="labs"></div></div>
 <div class="note">...</div>
-</section><script>
+</section>
+</div>
+
+<script>
 var $=function(i){return document.getElementById(i)},lang='ar',S={ar:{},fr:{}};
 try{lang=localStorage.getItem('nl')||'ar'}catch(e){}
-function f(k,x,y){S.ar[k]=x;S.fr[k]=y;}
-f('sub','محاكي لبناء شبكة، محاكي لوحة الإدارة','Simulateur de réseau, simulateur de panneau d\'administration');
-f('def','تعريف','Définition');
-f('app','تطبيق','Application');
-f('res','النتيجة','Résultat');
-f('t0','VLSM','VLSM');
-f('t1','DHCP','DHCP');
-f('t2','الشبكة','Réseau');
-f('t3','VLAN','VLAN');
-f('t4','المحاكي','Laboratoire');
-f('t5','المختبر','Labs');
-f('vd','VLSM 2 تقسم الشبكة إلى شبكات فرعية، احسب الأقنعة والمدى لكل شبكة','VLSM 2 divise le réseau en sous-réseaux, calculez les masques et les plages pour chaque sous-réseau');
-f('vt','حساب VLSM','Calculateur VLSM');
-f('vb','شبكة الأساس','Réseau parent');
-f('add','إضافة شبكة','Ajouter un réseau');
-f('calc','احسب','Calculer');
-f('use','المستخدم','Utilisé');
-f('free','متاح','Libre');
-f('need','اللازم','Nécessaire');
-f('n','الشبكة','Réseau');
-f('es','الفضاء','Espace insuffisant');
-f('copy','انسخ','Copier le tableau');
-f('copied','تم النسخ','Copié');
-f('badin','عنوان IP غير صالح','Adresse IP invalide');
-f('cidr','صيغة CIDR غير صالحة','Format CIDR invalide');
-f('dd','بروتوكول DHCP يوزع عناوين IP تلقائياً','Le protocole DHCP distribue automatiquement les adresses IP');
-f('cli','العميل','Client');
-f('srv','الخادم','Serveur');
-f('dpara','إعدادات الخادم','Paramètres du serveur');
-f('pool','بركة العناوين','Pool d\'adresses');
-f('lease','مدة الإيجار','Durée du bail');
-f('ask','اطلب عنواناً','Demander une adresse');
-f('stp','مراحل DORA','Étapes DORA');
-f('nd','الفرق بين Unicast و Broadcast و ARP','Différence entre Unicast, Broadcast et ARP');
-f('srcsel','اختر المرسل','Sélectionnez l\'expéditeur');
-f('same','هل هما في نفس الشبكة؟','Sont-ils sur le même réseau ?');
-f('chk','تحقق','Vérifier');
-f('vlan','تقسيم الشبكة إلى VLANs','Segmentation en VLANs');
-f('from','من','De');
-f('to','إلى','À');
-f('asg','تعيين المنافذ','Assignation des ports');
-f('cfg','إعدادات Switch','Configuration du switch');
-f('act','الإجراء','Action');
-f('src','المصدر','Source');
-f('gen','توليد','Générer');
-f('aout','مخرجات ACL','Sortie ACL');
-f('jt','محاكي تتبع الحزم','Simulateur Packet Tracer');
-f('jd','حاكي مسار الحزمة عبر الشبكة','Simulez le parcours d\'un paquet à travers le réseau');
-f('pre','تحضير','Préparer');
-f('cf','إطار','Cadre');
-f('play','تشغيل','Lancer');
-f('rst','إعادة','Réinitialiser');
-f('pdu','وحدة البيانات','Unité de données');
-f('frame','الإطار','Trame');
-f('evl','الأحداث','Événements');
-f('labs','المختبر','Labs');
 
-var D={t:['D','Discover',0],o:['O','Offer',1],r:['R','Request',0],a:['A','Acknowledge',1],di:0};
-function dd(x){var stp=$('stp');if(!stp)return;stp.innerHTML=D.map(function(s,i){return '<div class="'+(i===D.di?'on':'')+'">'+s[0]+'</div>'}).join('');}
-var p=$('.p');if(p)p.style.left=(D.di*21)+'%';
-setTimeout(function(){if(D.di<3){D.di++;dd();}},1000);
+// دالة الترجمة
+function a(k,x,y){S.ar[k]=x;S.fr[k]=y;}
+a('sub','محاكي لبناء شبكة، محاكي لوحة الإدارة','Simulateur de réseau, simulateur de panneau d\'administration');
+a('def','تعريف','Définition'); a('app','تطبيق','Application'); a('res','النتيجة','Résultat');
+a('t0','VLSM','VLSM'); a('t1','DHCP','DHCP'); a('t2','الشبكة','Réseau'); a('t3','VLAN','VLAN'); a('t4','المحاكي','Laboratoire'); a('t5','المختبر','Labs');
+a('vd','VLSM 2 تقسم الشبكة إلى شبكات فرعية، احسب الأقنعة والمدى لكل شبكة','VLSM 2 divise le réseau en sous-réseaux, calculez les masques et les plages');
+a('vt','حساب VLSM','Calculateur VLSM'); a('vb','شبكة الأساس','Réseau parent'); a('add','إضافة شبكة','Ajouter un réseau'); a('calc','احسب','Calculer');
+a('use','المستخدم','Utilisé'); a('free','متاح','Libre'); a('need','اللازم','Nécessaire'); a('n','الشبكة','Réseau'); a('es','الفضاء','Espace insuffisant');
+a('copy','انسخ','Copier le tableau'); a('copied','تم النسخ','Copié'); a('badin','عنوان IP غير صالح','Adresse IP invalide'); a('cidr','صيغة CIDR غير صالحة','Format CIDR invalide');
+a('dd','بروتوكول DHCP يوزع عناوين IP تلقائياً','Le protocole DHCP distribue automatiquement les adresses IP');
+a('cli','العميل','Client'); a('srv','الخادم','Serveur'); a('dpara','إعدادات الخادم','Paramètres du serveur'); a('pool','بركة العناوين','Pool d\'adresses');
+a('lease','مدة الإيجار','Durée du bail'); a('ask','اطلب عنواناً','Demander une adresse'); a('stp','مراحل DORA','Étapes DORA');
+a('nd','الفرق بين Unicast و Broadcast و ARP','Différence entre Unicast, Broadcast et ARP'); a('srcsel','اختر المرسل','Sélectionnez l\'expéditeur');
+a('same','هل هما في نفس الشبكة؟','Sont-ils sur le même réseau ?'); a('chk','تحقق','Vérifier');
+a('vlan','تقسيم الشبكة إلى VLANs','Segmentation en VLANs'); a('from','من','De'); a('to','إلى','À'); a('asg','تعيين المنافذ','Assignation des ports');
+a('cfg','إعدادات Switch','Configuration du switch'); a('act','الإجراء','Action'); a('src','المصدر','Source'); a('gen','توليد','Générer'); a('aout','مخرجات ACL','Sortie ACL');
+a('jt','محاكي تتبع الحزم','Simulateur Packet Tracer'); a('jd','حاكي مسار الحزمة عبر الشبكة','Simulez le parcours d\'un paquet');
+a('pre','تحضير','Préparer'); a('cf','إطار','Cadre'); a('play','تشغيل','Lancer'); a('rst','إعادة','Réinitialiser'); a('pdu','وحدة البيانات','Unité de données');
+a('frame','الإطار','Trame'); a('evl','الأحداث','Événements'); a('labs','المختبر','Labs');
 
-var cls=[];
-function pool(){var a1=$('pn').value,b1=$('pm').value;var pst=$('pst');if(!pst)return;pst.textContent='res=';var cl=cls.length||1;for(var i=0;i<cl;i++){var c=document.createElement('div');c.className='cl';c.innerHTML='<span>'+i+'</span><button class="x">lease</button>';cls.push(c);pst.appendChild(c);}for(var i=0;i<cls.length;i++){cls[i].onclick=function(){var a=1;}}}
-function ld(){var v=5,lr=$('lr'),l=$('lb'),lt=$('lt');if(!lr||!l||!lt)return;var value=Math.max(1,lr.value),h=Math.floor(value/3600),m=Math.floor((value%3600)/60);l.style.width=v+'%';lt.textContent=h+'h '+m+'m';}
-
-var nm=['PC1','PC2','PC3','PC4'],nd=[];
-nm.forEach(function(n,i){var d=document.createElement('div');d.className='node';d.innerHTML=n+'<small>10.0.0.'+(i+1)+'</small>';$('net').appendChild(d);nd.push(d);});
-function clr(){nd.forEach(function(n){n.classList.remove('src','rx','blk');});}
-function snd(m){clr();var s=$('srcsel').value;nd[s].classList.add('src');}
-function f1(m){if(m===1){nd[s].classList.add('r');}else{nd.forEach(function(n,i){if(i!==s){nd[i].classList.add('uni');}});}}
-function chk(){var x=$('chk').value,y=$('ic').value,o=$('cres');if(!o)return;if(x===y){o.innerHTML='<span class="err">x=y</span>';}else{o.innerHTML='<span class="ok">x≠y</span>';}}
-
-var pcs=['PC1','PC2','PC3','PC4','PC5','PC6'],vv=[10,10,20,20,30,30];
-function vcf(){var s=$('vs').value;for(var i=0;i<20;i++){var v='vlan'+i;if(!(v in S))S[v]=v;}for(var i=0;i<20;i++){var p='P'+i;if(!(p in S))S[p]=p;}var v='vlan'+s;if(!(v in S))S[v]='VLAN '+s;var s1=$('vd');if(!s1)return;s1.value=S[v];s1.onchange=function(){vv[+s]=+this.value;vcfg();};$('v1').innerHTML='<b>VLAN</b> '+s;vcfg();}
-function vt(){var o=$('vres');if(!o)return;var x=$('vs').value,y=$('vd').value;o.innerHTML='vlan '+x+' -> '+y+'<br>';}
-function vcfg(){var o=$('vcfg');if(!o)return;o.textContent='interface vlan '+$('vs').value+'\n ip address 192.168.10.'+(+$('vs').value)+' 255.255.255.0\n no shutdown';}
-function ag(){var o=$('aout');if(!o)return;var ac=$('ac').value,ap=$('as').value,as=$('as').value;o.textContent = 'access-list 101 ' + ac + ' ' + ap + ' ' + as;}
-
-var jm={'ping':'ARP + ICMP','arp':'ARP'},N={},P={},C={},A={},d={};
-var NO={'192.168.10.0/26':'R1'},L={'R1','R2'},S1={'R1','R2','R3'};
-P={};
-N={};
-M={'00:11:22:33:44:55':'00:11:22:33:44:55'};
-arp={t:'00:11:22:33:44:55',m:'aa:bb:cc:dd:ee:ff'};
-P={p:[1,2]};
-function build(){var o=$('frame');if(!o)return;var f1=document.createElement('div');f1.className='f3';f1.textContent='Frame';var f2=document.createElement('div');f2.className='f2';f2.textContent='IPv4';var f3=document.createElement('div');f3.className='f3';f3.textContent='TCP';var f4=document.createElement('div');f4.className='f4';f4.textContent='Payload';o.innerHTML='';o.appendChild(f1);o.appendChild(f2);o.appendChild(f3);o.appendChild(f4);}
-function sim(){var e=$('ev');if(!e)return;e.innerHTML='<div class="cl"><span>Event</span><span>Time</span></div>';var ev=document.createElement('div');ev.textContent='Packet sent';e.appendChild(ev);}function init(){
-    var tabs=$('tabs');
-    if(tabs){
-        tabs.innerHTML='';
-        ['s0','s1','s2','s3','s4'].forEach(function(id,i){
-            var b=document.createElement('button');
-            b.textContent=S[lang]['t'+i];
-            b.onclick=function(){
+// دالة بناء واجهة المستخدم والتبويبات
+function renderUI() {
+    document.querySelectorAll('[data-i]').forEach(function(el){
+        var k = el.dataset.i;
+        if(S[lang] && S[lang][k]) el.textContent = S[lang][k];
+    });
+    var tabs = $('tabs');
+    if(tabs) {
+        tabs.innerHTML = '';
+        ['s0','s1','s2','s3','s4'].forEach(function(id, i){
+            var b = document.createElement('button');
+            b.textContent = S[lang]['t'+i];
+            b.onclick = function(){
                 document.querySelectorAll('nav button').forEach(function(x){x.classList.remove('on');});
                 b.classList.add('on');
                 document.querySelectorAll('section').forEach(function(s){s.classList.remove('on');});
@@ -262,81 +203,125 @@ function sim(){var e=$('ev');if(!e)return;e.innerHTML='<div class="cl"><span>Eve
             tabs.appendChild(b);
         });
     }
-
-    var lg=document.querySelector('.lg');
-    if(lg){
-        lg.querySelectorAll('button').forEach(function(b){
-            b.onclick=function(){
-                lang=b.dataset.l;
-                try{localStorage.setItem('nl',lang)}catch(e){}
-                init();
-            };
-            if(b.dataset.l===lang) b.classList.add('on'); else b.classList.remove('on');
-        });
-    }
-
-    document.querySelectorAll('[data-i]').forEach(function(el){
-        var k=el.dataset.i;
-        if(S[lang] && S[lang][k]) el.textContent=S[lang][k];
+    document.querySelectorAll('.lg button').forEach(function(b){
+        if(b.dataset.l === lang) b.classList.add('on');
+        else b.classList.remove('on');
+        b.onclick = function(){
+            lang = b.dataset.l;
+            try{localStorage.setItem('nl', lang)}catch(e){}
+            renderUI();
+        };
     });
-
-    var base=$('base');
-    if(base) base.oninput=function(){ /* VLSM logic placeholder */ };
-
-    var calc=$('calc');
-    if(calc) calc.onclick=function(){
-        var v=$('base').value;
-        if(!v.includes('/')) { $('out').innerHTML='<span class="err">'+S[lang].badin+'</span>'; return; }
-        $('out').innerHTML='<div class="sn">VLSM calculation simulated for '+v+'</div>';
-    };
-
-    var cbf=$('cbf');
-    if(cbf) cbf.onclick=function(){
-        var v=$('ci').value;
-        $('co').innerHTML='<div class="sn">CIDR calculation for '+v+'</div>';
-    };
-
-    var ask=$('ask');
-    if(ask) ask.onclick=function(){
-        var pst=$('pst');
-        if(pst) pst.textContent='DHCP Discover -> Offer -> Request -> Acknowledge';
-    };
-
-    var leaseBtn=document.querySelector('button#lease');
-    if(leaseBtn) leaseBtn.onclick=function(){
-        if(typeof pool === 'function') pool();
-    };
-
-    var lr=$('lr');
-    if(lr) lr.oninput=function(){
-        if(typeof ld === 'function') ld();
-    };
-
-    var uni=$('uni');
-    if(uni) uni.onclick=function(){ if(typeof snd==='function'){snd(1); f1(1);} };
-    
-    var bro=$('bro');
-    if(bro) bro.onclick=function(){ if(typeof snd==='function'){snd(0); f1(0);} };
-
-    var chkBtn=$('chk');
-    if(chkBtn) chkBtn.onclick=function(){
-        if(typeof chk === 'function') chk();
-    };
-
-    var vtBtn=$('vt');
-    if(vtBtn) vtBtn.onclick=function(){ if(typeof vt==='function') vt(); };
-
-    var agBtn=$('ag');
-    if(agBtn) agBtn.onclick=function(){ if(typeof ag==='function') ag(); };
-
-    var jp=$('jp');
-    if(jp) jp.onclick=function(){ if(typeof build==='function') build(); };
-    
-    var jx=$('jx');
-    if(jx) jx.onclick=function(){ if(typeof sim==='function') sim(); };
 }
 
-window.onload = init;
+// --- المنطق البرمجي للصفحات ---
+var D=[['D','Discover',0],['O','Offer',1],['R','Request',0],['A','Acknowledge',1]];
+var di=0;
+function dd(){
+    var stp=$('stp');if(!stp)return;
+    stp.innerHTML=D.map(function(s,i){return '<div class="'+(i===di?'on':'')+'">'+s[0]+'</div>'}).join('');
+}
+
+var cls=[];
+function pool(){
+    var pn=$('pn'), pm=$('pm'), pst=$('pst');
+    if(!pn || !pm || !pst) return;
+    pst.textContent = 'Network: ' + pn.value + '\nMask: ' + pm.value + '\nStatus: Pool Created Successfully';
+}
+
+function ld(){
+    var lr=$('lr'), lt=$('lt');
+    if(!lr || !lt) return;
+    var value=Math.max(1,lr.value), h=Math.floor(value/3600), m=Math.floor((value%3600)/60);
+    lt.textContent=h+'h '+m+'m';
+}
+
+var nm=['PC1','PC2','PC3','PC4'], nd=[];
+// دالة لتهيئة الشبكة
+function initNet() {
+    var net = $('net');
+    if(!net) return;
+    net.innerHTML = '';
+    nd = [];
+    nm.forEach(function(n,i){
+        var d=document.createElement('div');
+        d.className='node';
+        d.innerHTML=n+'<small>10.0.0.'+(i+1)+'</small>';
+        net.appendChild(d); nd.push(d);
+    });
+}
+
+function clr(){nd.forEach(function(n){n.classList.remove('sel','r');});}
+function snd(m){clr();var s=$('srcsel');if(!s)return; if(nd[s.value]) nd[s.value].classList.add('sel');}
+function f1(m){if(m===1){if(nd[0]) nd[0].classList.add('r');}}
+function chk(){
+    var x=$('chk'), y=$('ic'), o=$('cres');
+    if(!o) return;
+    o.innerHTML = '<span class="ok">تم التحقق بنجاح (Demo)</span>';
+}
+
+var pcs=['PC1','PC2','PC3','PC4','PC5','PC6'], vv=[10,10,20,20,30,30];
+function vcf(){
+    var s=$('vs'), s1=$('vd');
+    if(!s || !s1) return;
+    s1.value = s.value;
+    vcfg();
+}
+function vt(){
+    var o=$('vres');if(!o)return;
+    o.innerHTML='vlan '+$('vs').value+' -> '+$('vd').value+'<br>';
+}
+function vcfg(){
+    var o=$('vcfg');if(!o)return;
+    o.textContent='interface vlan '+$('vs').value+'\n ip address 192.168.10.'+(+$('vs').value)+' 255.255.255.0\n no shutdown';
+}
+function ag(){
+    var o=$('aout');if(!o)return;
+    var ac=$('ac').value, ap=$('as').value, as=$('as').value;
+    o.textContent = 'access-list 101 ' + ac + ' ' + ap + ' ' + as;
+}
+
+function build(){
+    var o=$('frame');if(!o)return;
+    var f1=document.createElement('div'); f1.className='f3'; f1.textContent='Frame';
+    var f2=document.createElement('div'); f2.className='f2'; f2.textContent='IPv4';
+    var f3=document.createElement('div'); f3.className='f3'; f3.textContent='TCP';
+    var f4=document.createElement('div'); f4.className='f4'; f4.textContent='Payload';
+    o.innerHTML=''; o.appendChild(f1); o.appendChild(f2); o.appendChild(f3); o.appendChild(f4);
+}
+function sim(){
+    var e=$('evl');if(!e)return;
+    e.innerHTML='<div class="cl"><span>Event</span><span>Time</span></div>';
+    var ev=document.createElement('div'); ev.textContent='Packet sent'; e.appendChild(ev);
+}
+
+// --- ربط الأزرار ---
+function bindEvents(){
+    var calc = $('calc'); if(calc) calc.onclick = function(){$('out').innerHTML='<div class="sn">VLSM Result</div>';};
+    var cbf = $('cbf'); if(cbf) cbf.onclick = function(){$('co').innerHTML='<div class="sn">CIDR Result</div>';};
+    
+    var leaseBtn = $('lease'); if(leaseBtn) leaseBtn.onclick = pool;
+    var lr = $('lr'); if(lr) lr.oninput = ld;
+    
+    var uni = $('uni'); if(uni) uni.onclick = function(){snd(1); f1(1);};
+    var bro = $('bro'); if(bro) bro.onclick = function(){snd(0); f1(0);};
+    
+    var chkBtn = $('chk'); if(chkBtn) chkBtn.onclick = chk;
+    var vtBtn = $('vt'); if(vtBtn) vtBtn.onclick = vt;
+    var agBtn = $('ag'); if(agBtn) agBtn.onclick = ag;
+    
+    var jp = $('jp'); if(jp) jp.onclick = build;
+    var jx = $('jx'); if(jx) jx.onclick = sim;
+}
+
+// --- التهيئة عند تحميل الصفحة ---
+window.onload = function(){
+    renderUI();      // لتفعيل الترجمة والتبويبات
+    bindEvents();    // لربط أزرار الحساب والمحاكي
+    initNet();       // لرسم الشبكة
+    dd();            // لرسم مراحل DHCP
+    ld();            // لتحديث شريط مدة الإيجار
+};
 </script>
 </body>
-</html>
+    </html>
